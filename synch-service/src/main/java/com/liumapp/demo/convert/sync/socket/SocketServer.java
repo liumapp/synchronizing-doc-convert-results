@@ -17,7 +17,7 @@ import java.util.Map;
  * @date 7/2/18
  */
 
-@ServerEndpoint(value = "/socketServer/{userid}")
+@ServerEndpoint(value = "/socketServer/{socketId}")
 @Component
 public class SocketServer {
 
@@ -28,13 +28,13 @@ public class SocketServer {
     /**
      * 用户连接时触发
      * @param session
-     * @param userid
+     * @param socketId
      */
     @OnOpen
-    public void open(Session session,@PathParam(value="userid")String userid){
+    public void open(Session session,@PathParam(value="socketId")String socketId){
         this.session = session;
-        sessionPool.put(userid, session);
-        sessionIds.put(session.getId(), userid);
+        sessionPool.put(socketId, session);
+        sessionIds.put(session.getId(), socketId);
     }
 
     /**
@@ -68,10 +68,10 @@ public class SocketServer {
     /**
      *信息发送的方法
      * @param message
-     * @param userId
+     * @param socketId
      */
-    public static void sendMessage(String message,String userId){
-        Session s = sessionPool.get(userId);
+    public static void sendMessage(String message,String socketId){
+        Session s = sessionPool.get(socketId);
         if(s!=null){
             try {
                 s.getBasicRemote().sendText(message);
