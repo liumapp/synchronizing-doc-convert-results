@@ -1,6 +1,8 @@
 package com.liumapp.demo.convert.sync.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 /**
  * @author liumapp
@@ -12,6 +14,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SocketConfig {
 
-    
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter () {
+        return new ServerEndpointExporter();
+    }
 
 }
