@@ -14,7 +14,8 @@
           multiple
           type="drag"
           :action="uploadUrl"
-          :before-upload="handleFileToBase64">
+          :before-upload="handleFileToBase64"
+          v-bind:default-file-list="readyUploadFile">
           <div style="padding: 20px 0">
             <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
             <p>Click or drag files here to upload</p>
@@ -22,7 +23,11 @@
         </Upload>
       </Col>
     </Row>
-
+    <Row>
+      <Col span="2" offset="14">
+        <Button type="primary" @click="submitPic">提交</Button>
+      </Col>
+    </Row>
   </div>
 </template>
 <script>
@@ -32,12 +37,24 @@ export default {
   data () {
     return {
       uploadUrl: util.ajaxUrl + "/upload/base64",
+      file: {},
+      readyUploadFile: []
     }
   },
   methods: {
     handleFileToBase64 (file) {
-      console.log(file);
+      let reader = new FileReader();
+      let _vue = this;
+      reader.readAsDataURL(file);
+      reader.onload = function () {
+        _vue.file = reader.result;
+        _vue.readyUploadFile.push({name: file.name});
+      }
       return false;
+    },
+    submitPic () {
+      console.log(this.readyUploadFile)
+
     }
   }
 }
