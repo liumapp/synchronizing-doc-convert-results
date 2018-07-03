@@ -21,6 +21,11 @@
       </Card>
       </Col>
     </Row>
+    <Row>
+      <Col span="18" offset="3">
+        当前在线人数：{{ people }}
+      </Col>
+    </Row>
   </div>
 </template>
 <script>
@@ -34,7 +39,8 @@ export default {
   },
   data () {
     return {
-      current: 0
+      current: 0,
+      people: 0
     };
   }
 }
