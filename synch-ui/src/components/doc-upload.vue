@@ -66,8 +66,9 @@ export default {
       });
     },
     submitPic () {
-      console.log(this.readyUploadFile)
-
+      util.post('upload/base64', this.fileList).then(res => {
+        this.$Message.success('file upload success!');
+      });
     }
   }
 }
