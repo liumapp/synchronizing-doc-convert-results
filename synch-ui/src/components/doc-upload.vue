@@ -37,7 +37,7 @@ export default {
   data () {
     return {
       uploadUrl: util.ajaxUrl + "/upload/base64",
-      file: {},
+      fileList: [],
       readyUploadFile: []
     }
   },
@@ -47,11 +47,12 @@ export default {
       let _vue = this;
       reader.readAsDataURL(file);
       reader.onload = function () {
-        _vue.file = reader.result;
+        _vue.fileList.push({name: file.name, content: reader.result});
         _vue.readyUploadFile.push({name: file.name});
       }
       return false;
     },
+    
     submitPic () {
       console.log(this.readyUploadFile)
 
