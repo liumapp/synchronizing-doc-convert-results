@@ -13,7 +13,8 @@
         <Upload
           multiple
           type="drag"
-          action="//jsonplaceholder.typicode.com/posts/">
+          :action="uploadUrl"
+          :before-upload="handleFileToBase64">
           <div style="padding: 20px 0">
             <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
             <p>Click or drag files here to upload</p>
@@ -28,6 +29,16 @@
 import util from '@/libs/util'
 export default {
   name: 'doc-upload',
-
+  data () {
+    return {
+      uploadUrl: util.ajaxUrl + "/upload/base64",
+    }
+  },
+  methods: {
+    handleFileToBase64 (file) {
+      console.log(file);
+      return false;
+    }
+  }
 }
 </script>
