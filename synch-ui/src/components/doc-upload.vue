@@ -13,7 +13,7 @@
         <Upload
           multiple
           type="drag"
-          :action="uploadUrl"
+          action="#"
           :before-upload="handleFileToBase64"
           :default-file-list="readyUploadFile"
           :on-remove="handleRmFile">
@@ -37,7 +37,6 @@ export default {
   name: 'doc-upload',
   data () {
     return {
-      uploadUrl: util.ajaxUrl + "/upload/base64",
       fileList: [],
       readyUploadFile: []
     }
@@ -66,7 +65,7 @@ export default {
       });
     },
     submitPic () {
-      util.post('upload/base64', this.fileList).then(res => {
+      util.post('upload/multybase64', this.fileList).then(res => {
         this.$Message.success('file upload success!');
       });
     }

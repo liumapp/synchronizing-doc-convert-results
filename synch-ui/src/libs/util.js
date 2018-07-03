@@ -27,12 +27,6 @@ util.ajax = axios.create({
 });
 
 util.post = function (url, data) {
-  const token = Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')).token : '';
-  if (!data) {
-    data = { token: token };
-  } else {
-    data.token = token;
-  }
   return axios({
     method: 'post',
     baseURL: ajaxUrl,
@@ -42,7 +36,6 @@ util.post = function (url, data) {
     headers: {
       'X-Requested-With': 'XMLHttpRequest',
       'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer ' + token
     }
   }).then(
     (response) => {
