@@ -26,7 +26,7 @@
 <script>
 import docUpload from '@/components/doc-upload'
 import converting from '@/components/converting'
-import convertResult from '@/components/convertResult'
+import convertResult from '@/components/convert-result'
 export default {
   name: 'index',
   components: {
