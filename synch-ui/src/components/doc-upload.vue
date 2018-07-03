@@ -15,7 +15,8 @@
           type="drag"
           :action="uploadUrl"
           :before-upload="handleFileToBase64"
-          v-bind:default-file-list="readyUploadFile">
+          :default-file-list="readyUploadFile"
+          :on-remove="handleRmFile">
           <div style="padding: 20px 0">
             <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
             <p>Click or drag files here to upload</p>
@@ -52,7 +53,18 @@ export default {
       }
       return false;
     },
-    
+    handleRmFile (file) {
+      console.log(file);
+      let _vue = this;
+      let i = 0;
+      this.fileList.forEach(function (e) {
+        if (e.name == file.name) {
+          _vue.fileList.splice(i,1);
+          _vue.readyUploadFile.splice(i,1);
+        }
+        i++;
+      });
+    },
     submitPic () {
       console.log(this.readyUploadFile)
 
