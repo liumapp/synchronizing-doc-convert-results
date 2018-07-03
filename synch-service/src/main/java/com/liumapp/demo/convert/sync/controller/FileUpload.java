@@ -45,4 +45,9 @@ public class FileUpload {
         return JSON.toJSONString("success");
     }
 
+    @RequestMapping("/multybase64")
+    public String multyBase64Upload () {
+        return JSON.toJSONString("success");
+    }
+
 }
