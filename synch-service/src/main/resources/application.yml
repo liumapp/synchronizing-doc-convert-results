@@ -4,3 +4,7 @@ server:
 spring:
     application:
       name: synch-results
+
+liumapp:
+  filemanager:
+    savePath: /usr/local/tomcat/project/synchronizing-doc-convert-results/data/

@@ -33,7 +33,7 @@ public class FileUpload {
         return JSON.toJSONString("success");
     }
 
-    @RequestMapping("/base")
+    @RequestMapping("/base64")
     public String base64Upload (@RequestBody DocEntity docEntity) {
         try {
             MultipartFile file = fileManager.base64toMultipart(docEntity.getBase64File());
