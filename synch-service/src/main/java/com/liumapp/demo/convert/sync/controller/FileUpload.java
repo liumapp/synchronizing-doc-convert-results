@@ -1,8 +1,11 @@
 package com.liumapp.demo.convert.sync.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.liumapp.demo.convert.sync.entity.DocEntity;
+import com.liumapp.demo.convert.sync.util.Base64File;
 import com.liumapp.demo.convert.sync.util.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,8 +34,15 @@ public class FileUpload {
     }
 
     @RequestMapping("/base")
-    public String base64Upload () {
-
+    public String base64Upload (@RequestBody DocEntity docEntity) {
+        try {
+            MultipartFile file = fileManager.base64toMultipart(docEntity.getBase64File());
+            fileManager.save(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return JSON.toJSONString("save file failed");
+        }
+        return JSON.toJSONString("success");
     }
 
 }
