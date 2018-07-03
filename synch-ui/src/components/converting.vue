@@ -8,4 +8,7 @@
 <template>
 </template>
 <script>
+export default {
+  name: 'converting'
+}
 </script>
