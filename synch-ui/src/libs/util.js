@@ -5,8 +5,6 @@
  * @homepage http://www.liumapp.com
  * @date 7/2/18
  */
-
-
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Message } from 'iview';

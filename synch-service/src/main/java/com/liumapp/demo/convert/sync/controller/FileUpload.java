@@ -30,4 +30,9 @@ public class FileUpload {
         return JSON.toJSONString("success");
     }
 
+    @RequestMapping("/base")
+    public String base64Upload () {
+
+    }
+
 }
