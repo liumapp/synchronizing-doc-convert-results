@@ -47,16 +47,15 @@ public class FileUpload {
     @RequestMapping("/multybase64")
     @ResponseBody
     public String multyBase64Upload (@RequestBody MultyDocEntity[] list) {
-//        try {
+        try {
             for (MultyDocEntity doc : list) {
-                System.out.println(doc);
-//                MultipartFile file = fileManager.base64toMultipart(doc.getContent());
-//                fileManager.save(file);
+                MultipartFile file = fileManager.base64toMultipart(doc.getContent());
+                fileManager.save(file);
             }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return JSON.toJSONString("error");
-//        }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return JSON.toJSONString("error");
+        }
         return JSON.toJSONString("success");
     }
 
