@@ -5,13 +5,11 @@ import com.liumapp.demo.convert.sync.entity.DocEntity;
 import com.liumapp.demo.convert.sync.util.Base64File;
 import com.liumapp.demo.convert.sync.util.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author liumapp
@@ -46,7 +44,9 @@ public class FileUpload {
     }
 
     @RequestMapping("/multybase64")
-    public String multyBase64Upload () {
+    @ResponseBody
+    public String multyBase64Upload (@RequestParam(required = false, value = "list[]") List<String> list) {
+
         return JSON.toJSONString("success");
     }
 

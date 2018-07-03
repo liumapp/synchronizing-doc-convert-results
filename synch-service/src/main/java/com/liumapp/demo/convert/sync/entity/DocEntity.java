@@ -2,6 +2,8 @@ package com.liumapp.demo.convert.sync.entity;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 /**
  * @author liumapp
  * @file DocEntity.java
@@ -10,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @date 7/3/18
  */
 @Component
-public class DocEntity {
+public class DocEntity implements Serializable {
 
     private String base64File;
 
