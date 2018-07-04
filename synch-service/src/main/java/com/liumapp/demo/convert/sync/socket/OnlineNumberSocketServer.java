@@ -1,5 +1,7 @@
 package com.liumapp.demo.convert.sync.socket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.OnClose;
@@ -21,6 +23,8 @@ import java.util.concurrent.CopyOnWriteArraySet;
 @Component
 public class OnlineNumberSocketServer {
 
+    private static Logger logger = LoggerFactory.getLogger(OnlineNumberSocketServer.class);
+
     private static int onlineNumber = 0;
 
     private static CopyOnWriteArraySet<OnlineNumberSocketServer> clientWebSet = new CopyOnWriteArraySet<OnlineNumberSocketServer>();
@@ -32,7 +36,7 @@ public class OnlineNumberSocketServer {
         this.session = session;
         clientWebSet.add(this);
         addOnlineNumber();
-        System.out.println("new man in , now has :" + getOnlineNumber());
+        logger.info("new man in , now has :" + getOnlineNumber());
         this.onMessage("add new account", session);
     }
 
@@ -40,7 +44,7 @@ public class OnlineNumberSocketServer {
     public void onClose () throws IOException {
         clientWebSet.remove(this);
         subOnlineNumber();
-        System.out.println("a man out , now has :" + getOnlineNumber());
+        logger.info("a man out , now has :" + getOnlineNumber());
         this.onMessage("sub new account", session);
     }
 
