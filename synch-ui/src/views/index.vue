@@ -44,7 +44,7 @@ export default {
       ws: null
     };
   },
-  created () {
+  mounted () {
     if ('window' in window) {
       this.initSocket();
     } else {
@@ -53,12 +53,16 @@ export default {
   },
   methods: {
     initSocket () {
+      let _vue = this;
       this.ws = new WebSocket('ws://localhost:2020/onlineSocket');
-      this.ws.onmessage = this.getWsMessage(event);
+      this.ws.onmessage = (event) => {
+        _vue.getMessage(event);
+      };
     },
-    getWsMessage (event) {
-      console.log(event);
+    getMessage (event) {
+      this.people = event.data;
     }
+
   }
 }
 </script>
