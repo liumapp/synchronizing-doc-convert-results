@@ -29,6 +29,7 @@
   </div>
 </template>
 <script>
+import util from '@/libs/util'
 import docUpload from '@/components/doc-upload'
 import converting from '@/components/converting'
 import convertResult from '@/components/convert-result'
@@ -54,7 +55,7 @@ export default {
   methods: {
     initSocket () {
       let _vue = this;
-      this.ws = new WebSocket('ws://localhost:2020/onlineSocket');
+      this.ws = new WebSocket(util.onlineSocketUrl);
       this.ws.onmessage = (event) => {
         _vue.getMessage(event);
       };
