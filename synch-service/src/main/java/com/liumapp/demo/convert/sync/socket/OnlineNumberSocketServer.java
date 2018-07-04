@@ -37,7 +37,7 @@ public class OnlineNumberSocketServer {
         clientWebSet.add(this);
         addOnlineNumber();
         logger.info("new man in , now has :" + getOnlineNumber());
-        this.onMessage("add new account", session);
+        this.infoAllClient();
     }
 
     @OnClose
@@ -45,11 +45,15 @@ public class OnlineNumberSocketServer {
         clientWebSet.remove(this);
         subOnlineNumber();
         logger.info("a man out , now has :" + getOnlineNumber());
-        this.onMessage("sub new account", session);
+        this.infoAllClient();
     }
 
     @OnMessage
     public void onMessage (String msg, Session session) throws IOException {
+        this.infoAllClient();
+    }
+
+    public void infoAllClient () throws IOException {
         for (OnlineNumberSocketServer client: clientWebSet) {
             client.session.getAsyncRemote().sendText(Integer.toString(getOnlineNumber()));
         }
