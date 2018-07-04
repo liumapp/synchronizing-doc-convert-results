@@ -45,7 +45,13 @@ export default {
     };
   },
   created () {
-    this.ws = new WebSocket('ws://localhost:2020/socketServer/1')
+    this.ws = new WebSocket('ws://localhost:2020/socketServer/1');
+    this.ws.onmessage = this.getWsMessage(event);
+  },
+  methods: {
+    getWsMessage (event) {
+      console.log(event);
+    }
   }
 }
 </script>
