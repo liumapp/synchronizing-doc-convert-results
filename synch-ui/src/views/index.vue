@@ -45,10 +45,17 @@ export default {
     };
   },
   created () {
-    this.ws = new WebSocket('ws://localhost:2020/socketServer/1');
-    this.ws.onmessage = this.getWsMessage(event);
+    if ('window' in window) {
+      this.initSocket();
+    } else {
+      this.$Message.error('your browser not support socket !');
+    }
   },
   methods: {
+    initSocket () {
+      this.ws = new WebSocket('ws://localhost:2020/onlineSocket');
+      this.ws.onmessage = this.getWsMessage(event);
+    },
     getWsMessage (event) {
       console.log(event);
     }
