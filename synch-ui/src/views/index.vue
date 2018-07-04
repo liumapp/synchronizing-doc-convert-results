@@ -15,8 +15,8 @@
           <Step title="转换过程中" content="通过socket等待转换结果"></Step>
           <Step title="获取转换结果" content="可下载转换好的pdf文档"></Step>
         </Steps>
-        <doc-upload v-if="current == 0"></doc-upload>
-        <converting v-if="current == 1"></converting>
+        <doc-upload v-if="current == 0" @next="nextStep"></doc-upload>
+        <converting v-if="current == 1" @next="nextStep"></converting>
         <convert-result v-if="current == 2"></convert-result>
       </Card>
       </Col>
@@ -42,7 +42,8 @@ export default {
     return {
       current: 0,
       people: 0,
-      ws: null
+      ws: null,
+      convertId: 0
     };
   },
   mounted () {
@@ -62,6 +63,12 @@ export default {
     },
     getMessage (event) {
       this.people = event.data;
+    },
+    nextStep () {
+      this.current++;
+    },
+    prevStep () {
+      this.current--;
     }
 
   }
