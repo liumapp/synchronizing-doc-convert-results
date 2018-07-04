@@ -33,14 +33,15 @@ public class OnlineNumberSocketServer {
         clientWebSet.add(this);
         addOnlineNumber();
         System.out.println("new man in , now has :" + getOnlineNumber());
-        this.onMessage("get account", session);
+        this.onMessage("add new account", session);
     }
 
     @OnClose
-    public void onClose () {
+    public void onClose () throws IOException {
         clientWebSet.remove(this);
         subOnlineNumber();
         System.out.println("a man out , now has :" + getOnlineNumber());
+        this.onMessage("sub new account", session);
     }
 
     @OnMessage
