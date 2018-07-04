@@ -7,6 +7,7 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
@@ -27,23 +28,30 @@ public class OnlineNumberSocketServer {
     private Session session;
 
     @OnOpen
-    public void onOpen (Session session) {
+    public void onOpen (Session session) throws IOException {
         this.session = session;
         clientWebSet.add(this);
         addOnlineNumber();
+        System.out.println("new man in , now has :" + getOnlineNumber());
+        this.onMessage("get account", session);
     }
 
     @OnClose
     public void onClose () {
         clientWebSet.remove(this);
         subOnlineNumber();
+        System.out.println("a man out , now has :" + getOnlineNumber());
     }
 
     @OnMessage
-    public void onMessage (String msg, Session session) {
+    public void onMessage (String msg, Session session) throws IOException {
         for (OnlineNumberSocketServer client: clientWebSet) {
-            this.session.getAsyncRemote().sendText("hello from server");
+            client.session.getAsyncRemote().sendText(Integer.toString(getOnlineNumber()));
         }
+    }
+
+    public synchronized int getOnlineNumber () {
+        return OnlineNumberSocketServer.onlineNumber;
     }
 
     public synchronized int addOnlineNumber () {
