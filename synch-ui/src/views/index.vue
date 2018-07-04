@@ -40,8 +40,12 @@ export default {
   data () {
     return {
       current: 0,
-      people: 0
+      people: 0,
+      ws: null
     };
+  },
+  created () {
+    this.ws = new WebSocket('ws://localhost:2020/socketServer/1')
   }
 }
 </script>
