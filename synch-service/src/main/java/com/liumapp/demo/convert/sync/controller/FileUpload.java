@@ -55,6 +55,7 @@ public class FileUpload {
             for (MultyDocEntity doc : list) {
                 MultipartFile file = fileManager.base64toMultipart(doc.getContent());
                 fileManager.save(file);
+                doc2PDF.doc2pdf(fileManager.getDestFilePath() + ".pdf", fileManager.getDestFilePath());
             }
         } catch (IOException e) {
             e.printStackTrace();
