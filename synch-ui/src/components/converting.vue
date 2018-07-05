@@ -57,7 +57,13 @@ export default {
   },
   methods: {
     initSocket () {
-      this.ws = new WebSocket(util.convertingResultSocket);
+      let _vue = this;
+      this.ws = new WebSocket(util.convertingResultSocket + "/" + this.convertId);
+      this.ws.onmessage = (event) => {
+        _vue.getMessage(event);
+      };
+    },
+    getMessage (event) {
 
     }
   }
