@@ -40,7 +40,7 @@ export default {
   },
   data () {
     return {
-      current: 0,
+      current: 1,
       people: 0,
       ws: null,
       convertId: 0

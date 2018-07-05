@@ -5,10 +5,31 @@
  * @homepage http://www.liumapp.com
  * @date 7/3/18
  */
+<style lang="less">
+  .demo-spin-container{
+    display: inline-block;
+    text-align: center;
+    width: 500px;
+    height: 200px;
+    position: relative;
+    border: none;
+
+  }
+</style>
 <template>
   <div>
+    <Row>
+      <Col span="12" offset="6">
+        <div class="demo-spin-container">
+          <div>
 
+          </div>
+          <Spin size="large" fix v-if="spinShow"></Spin>
+        </div>
+      </Col>
+    </Row>
   </div>
+
 </template>
 <script>
 export default {
@@ -18,7 +39,7 @@ export default {
   ],
   data () {
     return {
-
+      spinShow: true
     };
   }
 }
