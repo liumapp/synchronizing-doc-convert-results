@@ -6,10 +6,20 @@
  * @date 7/3/18
  */
 <template>
+  <div>
 
+  </div>
 </template>
 <script>
 export default {
-  name: 'converting'
+  name: 'converting',
+  props: [
+    'convertId'
+  ],
+  data () {
+    return {
+
+    };
+  }
 }
 </script>
