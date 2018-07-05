@@ -44,16 +44,13 @@ export default {
       readyUploadFile: []
     }
   },
-  created () {
-    
-  },
   methods: {
     handleFileToBase64 (file) {
       let reader = new FileReader();
       let _vue = this;
       reader.readAsDataURL(file);
       reader.onload = function () {
-        _vue.fileList.push({name: file.name, content: reader.result});
+        _vue.fileList.push({name: file.name, content: reader.result, convertId: this.convertId});
         _vue.readyUploadFile.push({name: file.name});
       }
       return false;
