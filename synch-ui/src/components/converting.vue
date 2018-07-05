@@ -36,6 +36,7 @@
 
 </template>
 <script>
+import util from '@/libs/util'
 export default {
   name: 'converting',
   props: [
@@ -43,8 +44,22 @@ export default {
   ],
   data () {
     return {
-      spinShow: true
+      spinShow: true,
+      ws: null
     };
+  },
+  mounted () {
+    if ('window' in window) {
+      this.initSocket();
+    } else {
+      this.$Message.error('your browser not support socket !');
+    }
+  },
+  methods: {
+    initSocket () {
+      this.ws = new WebSocket(util.convertingResultSocket);
+
+    }
   }
 }
 </script>

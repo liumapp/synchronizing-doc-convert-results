@@ -16,7 +16,7 @@
           <Step title="结束"></Step>
         </Steps>
         <doc-upload v-if="current == 0" @next="nextStep" :convertId="convertId"></doc-upload>
-        <converting v-if="current == 1" @next="nextStep"></converting>
+        <converting v-if="current == 1" @next="nextStep" :convertId="convertId"></converting>
         <convert-result v-if="current == 2"></convert-result>
       </Card>
       </Col>

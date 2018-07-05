@@ -19,9 +19,11 @@ util.title = function (title) {
 
 const ajaxUrl = 'http://localhost:2020/';
 const onlineSocketUrl = 'ws://localhost:2020/onlineSocket';
+const convertingResultSocket = 'ws://localhost:2020/convertingSocket';
 
 util.ajaxUrl = ajaxUrl;
 util.onlineSocketUrl = onlineSocketUrl;
+util.convertingResultSocket = convertingResultSocket;
 
 util.ajax = axios.create({
   baseURL: ajaxUrl,
