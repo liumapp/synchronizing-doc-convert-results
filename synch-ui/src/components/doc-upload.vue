@@ -35,11 +35,17 @@
 import util from '@/libs/util'
 export default {
   name: 'doc-upload',
+  props: [
+    'convertId'
+  ],
   data () {
     return {
       fileList: [],
       readyUploadFile: []
     }
+  },
+  created () {
+    
   },
   methods: {
     handleFileToBase64 (file) {
