@@ -63,7 +63,11 @@ util.checkStatus = function checkStatus (response) {
 };
 
 util.randNumber = function (n) {
-
+  let rnd = "";
+  for (let i = 0 ; i < n ; i++) {
+    rnd += Math.floor(Math.random()*10);
+  }
+  return rnd;
 };
 
 export default util;

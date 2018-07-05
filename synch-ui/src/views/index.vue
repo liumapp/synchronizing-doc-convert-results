@@ -47,7 +47,7 @@ export default {
     };
   },
   created () {
-//    this.convertId =
+    this.convertId = util.randNumber(5);
   },
   mounted () {
     if ('window' in window) {
