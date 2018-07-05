@@ -18,12 +18,23 @@ public class MultyDocEntity implements Serializable {
 
     private String content;
 
+    private Integer convertId;
+
     public MultyDocEntity() {
     }
 
-    public MultyDocEntity(String name, String content) {
+    public MultyDocEntity(String name, String content, Integer convertId) {
         this.name = name;
         this.content = content;
+        this.convertId = convertId;
+    }
+
+    public Integer getConvertId() {
+        return convertId;
+    }
+
+    public void setConvertId(Integer convertId) {
+        this.convertId = convertId;
     }
 
     public String getName() {
