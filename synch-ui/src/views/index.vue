@@ -46,6 +46,9 @@ export default {
       convertId: 0
     };
   },
+  created () {
+//    this.convertId =
+  },
   mounted () {
     if ('window' in window) {
       this.initSocket();

@@ -62,4 +62,8 @@ util.checkStatus = function checkStatus (response) {
   };
 };
 
+util.randNumber = function (n) {
+
+};
+
 export default util;
