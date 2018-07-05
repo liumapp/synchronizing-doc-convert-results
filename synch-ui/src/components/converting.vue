@@ -6,23 +6,27 @@
  * @date 7/3/18
  */
 <style lang="less">
-  .demo-spin-container{
+  .spin-container {
     display: inline-block;
     text-align: center;
     width: 500px;
     height: 200px;
     position: relative;
     border: none;
-
+    .spin-content {
+      padding-top: 65px;
+    }
   }
 </style>
 <template>
   <div>
     <Row>
       <Col span="12" offset="6">
-        <div class="demo-spin-container">
-          <div>
-
+        <div class="spin-container">
+          <div class="spin-content">
+            加载完成，点击下载
+            <br>
+            <Button type="success">下载</Button>
           </div>
           <Spin size="large" fix v-if="spinShow"></Spin>
         </div>
