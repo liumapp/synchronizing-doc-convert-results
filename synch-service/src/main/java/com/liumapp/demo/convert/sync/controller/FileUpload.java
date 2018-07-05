@@ -1,6 +1,7 @@
 package com.liumapp.demo.convert.sync.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.liumapp.convert.doc.Doc2PDF;
 import com.liumapp.demo.convert.sync.entity.DocEntity;
 import com.liumapp.demo.convert.sync.entity.MultyDocEntity;
 import com.liumapp.demo.convert.sync.util.Base64File;
@@ -25,6 +26,9 @@ public class FileUpload {
 
     @Autowired
     private FileManager fileManager;
+
+    @Autowired
+    private Doc2PDF doc2PDF;
 
     @RequestMapping("/")
     public String upload (@RequestParam("file") MultipartFile file) throws IOException {

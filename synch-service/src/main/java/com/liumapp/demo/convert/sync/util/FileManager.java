@@ -19,8 +19,11 @@ public class FileManager {
 
     private String savePath;
 
+    private String destFilePath;
+
     public void save (MultipartFile file) throws IOException {
-        File destFile = new File(savePath + file.getOriginalFilename());
+        this.destFilePath = savePath + file.getOriginalFilename();
+        File destFile = new File(this.destFilePath);
         file.transferTo(destFile);
     }
 
@@ -53,6 +56,10 @@ public class FileManager {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public String getDestFilePath() {
+        return destFilePath;
     }
 
 }
