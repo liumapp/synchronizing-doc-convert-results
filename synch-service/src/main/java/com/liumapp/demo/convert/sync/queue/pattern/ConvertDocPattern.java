@@ -16,15 +16,37 @@ public class ConvertDocPattern {
 
     private String docPath;
 
+    private String originalName;
+
     private String pdfPath;
+
+    private String saveName;
 
     public ConvertDocPattern() {
     }
 
-    public ConvertDocPattern(Integer convertId, String docPath, String pdfPath) {
+    public ConvertDocPattern(Integer convertId, String docPath, String originalName, String pdfPath, String saveName) {
         this.convertId = convertId;
         this.docPath = docPath;
+        this.originalName = originalName;
         this.pdfPath = pdfPath;
+        this.saveName = saveName;
+    }
+
+    public String getOriginalName() {
+        return originalName;
+    }
+
+    public void setOriginalName(String originalName) {
+        this.originalName = originalName;
+    }
+
+    public String getSaveName() {
+        return saveName;
+    }
+
+    public void setSaveName(String saveName) {
+        this.saveName = saveName;
     }
 
     public Integer getConvertId() {
