@@ -71,5 +71,4 @@ public class OnlineNumberSocketServer {
         return OnlineNumberSocketServer.onlineNumber--;
     }
 
-
 }

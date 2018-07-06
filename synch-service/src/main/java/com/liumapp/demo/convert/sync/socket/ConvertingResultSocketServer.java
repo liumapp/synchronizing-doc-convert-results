@@ -50,8 +50,10 @@ public class ConvertingResultSocketServer {
         logger.info("convert info: " + msg + ", the convertId is : " + this.convertId.toString());
     }
 
-    public void sendAll () {
-
+    public void sendAll (String msg) {
+        for (ConvertingResultSocketServer client: resultWebSet) {
+            client.session.getAsyncRemote().sendText(msg);
+        }
     }
 
 }
