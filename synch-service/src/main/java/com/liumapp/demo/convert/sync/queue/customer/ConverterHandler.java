@@ -31,9 +31,8 @@ public class ConverterHandler {
     public void process (String jsonPattern) {
         logger.info("convert job begin , doc path is : " + jsonPattern);
         ConvertDocPattern docPattern = JSON.parseObject(jsonPattern, ConvertDocPattern.class);
-
         doc2PDF.doc2pdf(docPattern.getPdfPath(), docPattern.getDocPath());
-
+        ConvertingResultSocketServer.sendMessage(docPattern.getPdfPath(), docPattern.getConvertId());
     }
 
 }

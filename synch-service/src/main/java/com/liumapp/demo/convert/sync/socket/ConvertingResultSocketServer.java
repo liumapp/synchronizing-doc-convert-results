@@ -58,13 +58,13 @@ public class ConvertingResultSocketServer {
         logger.info("convert info: " + msg + ", the convertId is : " + this.convertId.toString());
     }
 
-    public void sendAll (String msg) {
+    public static void sendAll (String msg) {
         for (ConvertingResultSocketServer client: resultWebSet) {
             client.session.getAsyncRemote().sendText(msg);
         }
     }
 
-    public void sendMessage (String msg, Integer convertId) {
+    public static void sendMessage (String msg, Integer convertId) {
         Session session = sessionPool.get(convertId);
         if(session != null){
             try {
