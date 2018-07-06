@@ -70,7 +70,7 @@ export default {
       this.spinShow = false;
     },
     downloadPdf () {
-      window.location.href = util.ajaxUrl + "download/" + this.filename;
+      window.open(util.ajaxUrl + "download/?filename=" + this.filename);
     }
   }
 }
