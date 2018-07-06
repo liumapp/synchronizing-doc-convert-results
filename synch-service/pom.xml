@@ -75,6 +75,12 @@
       <artifactId>convert-doc-to-pdf</artifactId>
       <version>v1.0.0</version>
     </dependency>
+
+    <!--rabbit mq require-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-amqp</artifactId>
+    </dependency>
   </dependencies>
 
   <repositories>

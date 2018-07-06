@@ -4,6 +4,11 @@ server:
 spring:
     application:
       name: synch-results
+    rabbitmq:
+      port: 5672
+      host: localhost
+      username: springcloud
+      password: 123456
 
 liumapp:
   filemanager:
