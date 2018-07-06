@@ -26,9 +26,9 @@
           <div class="spin-content">
             加载完成，点击下载
             <br>
-            <Button type="success">下载</Button>
+            <Button type="success" @click="downloadPdf">下载</Button>
           </div>
-          <Spin size="large" fix v-if="spinShow"></Spin>
+          <Spin size="large" fix v-if="spinShow" ></Spin>
         </div>
       </Col>
     </Row>
@@ -65,6 +65,10 @@ export default {
     },
     getMessage (event) {
       this.$Message.success("convert success , the file is : " + event.data);
+      this.spinShow = false;
+    },
+    downloadPdf () {
+
     }
   }
 }
