@@ -45,7 +45,8 @@ export default {
   data () {
     return {
       spinShow: true,
-      ws: null
+      ws: null,
+      filename: ''
     };
   },
   mounted () {
@@ -64,11 +65,12 @@ export default {
       };
     },
     getMessage (event) {
+      this.filename = event.data;
       this.$Message.success("convert success , the file is : " + event.data);
       this.spinShow = false;
     },
     downloadPdf () {
-
+      util.get('download/', {filename: this.filename});
     }
   }
 }
