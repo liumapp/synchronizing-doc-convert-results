@@ -27,6 +27,7 @@
             加载完成，点击下载
             <br>
             <Button type="success" @click="downloadPdf">下载</Button>
+            <Button type="default" @click="getBack">返回首页</Button>
           </div>
           <Spin size="large" fix v-if="spinShow" ></Spin>
         </div>
@@ -71,6 +72,9 @@ export default {
     },
     downloadPdf () {
       window.open(util.ajaxUrl + "download/?filename=" + this.filename);
+    },
+    getBack () {
+      window.location.reload();
     }
   }
 }
