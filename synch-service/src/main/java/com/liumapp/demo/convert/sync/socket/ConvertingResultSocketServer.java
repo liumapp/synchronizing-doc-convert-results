@@ -30,7 +30,7 @@ public class ConvertingResultSocketServer {
 
     private static CopyOnWriteArraySet<ConvertingResultSocketServer> resultWebSet = new CopyOnWriteArraySet<ConvertingResultSocketServer>();
 
-    private static Map<Integer, Session> sessionPool = new HashMap<Integer, Session>();
+    private static Map<String, Session> sessionPool = new HashMap<String, Session>();
 
     private Session session;
 
@@ -41,14 +41,14 @@ public class ConvertingResultSocketServer {
         this.session = session;
         this.convertId = convertId;
         resultWebSet.add(this);
-        sessionPool.put(convertId, session);
+        sessionPool.put(convertId.toString(), session);
         logger.info("new  convert job in , the convertId is :" + convertId.toString());
     }
 
     @OnClose
     public void onClose () {
         Integer convertId = this.convertId;
-        sessionPool.remove(convertId);
+        sessionPool.remove(convertId.toString());
         resultWebSet.remove(this);
         logger.info("convert job out , the convertId is :" + convertId.toString());
     }
@@ -65,11 +65,12 @@ public class ConvertingResultSocketServer {
     }
 
     public static void sendMessage (String msg, Integer convertId) {
-        Session session = sessionPool.get(convertId);
+        logger.info("convert result done , send msg : " + msg);
+        Session session = sessionPool.get(convertId.toString());
         if(session != null){
             try {
-                session.getBasicRemote().sendText(msg);
-            } catch (IOException e) {
+                session.getAsyncRemote().sendText(msg);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
