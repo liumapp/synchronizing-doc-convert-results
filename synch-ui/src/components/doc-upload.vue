@@ -41,8 +41,12 @@ export default {
   data () {
     return {
       fileList: [],
-      readyUploadFile: []
+      readyUploadFile: [],
+      cid: 0,
     }
+  },
+  created () {
+    this.cid = this.convertId;
   },
   methods: {
     handleFileToBase64 (file) {
@@ -50,7 +54,7 @@ export default {
       let _vue = this;
       reader.readAsDataURL(file);
       reader.onload = function () {
-        _vue.fileList.push({name: file.name, content: reader.result, convertId: this.convertId});
+        _vue.fileList.push({name: file.name, content: reader.result, convertId: _vue.cid});
         _vue.readyUploadFile.push({name: file.name});
       }
       return false;
