@@ -22,7 +22,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @homepage http://www.liumapp.com
  * @date 7/5/18
  */
-@ServerEndpoint(value = "convertingSocket/{convertId}")
+@ServerEndpoint(value = "/convertingSocket/{convertId}")
 @Component
 public class ConvertingResultSocketServer {
 
