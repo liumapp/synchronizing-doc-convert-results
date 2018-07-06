@@ -1,9 +1,12 @@
 package com.liumapp.demo.convert.sync.queue.customer;
 
+import com.liumapp.convert.doc.Doc2PDF;
+import com.liumapp.demo.convert.sync.socket.ConvertingResultSocketServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,13 +20,16 @@ import org.springframework.stereotype.Component;
 @RabbitListener(queues = "doc-convert-queue")
 public class ConverterHandler {
 
+    @Autowired
+    private Doc2PDF doc2PDF;
+
     private static Logger logger = LoggerFactory.getLogger(ConverterHandler.class);
 
     @RabbitHandler
-    public void process (String msg) throws InterruptedException {
-        logger.info("a1 begin , the msg is : " + msg);
-        Thread.sleep(5000);
-        logger.info("a1 done");
+    public void process (String docPath) {
+        logger.info("convert job begin , doc path is : " + docPath);
+        doc2PDF.doc2pdf(docPath + ".pdf", docPath);
+//        ConvertingResultSocketServer
     }
 
 }

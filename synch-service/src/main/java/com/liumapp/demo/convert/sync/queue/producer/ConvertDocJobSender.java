@@ -21,8 +21,9 @@ public class ConvertDocJobSender {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
-    public void send (String msg) {
-        this.amqpTemplate.convertAndSend("test-queue" , "content");
+    public void send (String docPath) {
+        logger.info("add new convert job, doc path is : " + docPath);
+        this.amqpTemplate.convertAndSend("doc-convert-queue" , docPath);
     }
 
 }

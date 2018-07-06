@@ -29,9 +29,6 @@ public class FileUpload {
     private FileManager fileManager;
 
     @Autowired
-    private Doc2PDF doc2PDF;
-
-    @Autowired
     private ConvertDocJobSender convertDocJobSender;
 
     @RequestMapping("/")
