@@ -61,8 +61,10 @@ public class FileUploadController {
                 MultipartFile file = fileManager.base64toMultipart(doc.getContent());
                 fileManager.save(file);
                 convertDocPattern.setConvertId(doc.getConvertId());
-                convertDocPattern.setDocPath(fileManager.getDestFilePath());
-                convertDocPattern.setPdfPath(fileManager.getDestFilePath() + ".pdf");
+                convertDocPattern.setDocPath(fileManager.getSavePath());
+                convertDocPattern.setPdfPath(fileManager.getSavePath());
+                convertDocPattern.setOriginalName(fileManager.getFileName());
+                convertDocPattern.setSaveName(fileManager.getFileName() + ".pdf");
                 convertDocJobSender.send(JSON.toJSONString(convertDocPattern));
             }
         } catch (IOException e) {

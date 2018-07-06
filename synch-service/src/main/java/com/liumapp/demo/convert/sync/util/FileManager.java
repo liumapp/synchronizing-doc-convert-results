@@ -22,13 +22,13 @@ import java.util.Date;
 @Component
 public class FileManager {
 
+    private String fileName;
+
     private String savePath;
 
-    private String destFilePath;
-
     public void save (MultipartFile file) throws IOException {
-        this.destFilePath = savePath + file.getOriginalFilename();
-        File destFile = new File(this.destFilePath);
+        this.fileName = file.getOriginalFilename();
+        File destFile = new File(savePath + file.getOriginalFilename());
         file.transferTo(destFile);
     }
 
@@ -63,8 +63,8 @@ public class FileManager {
         }
     }
 
-    public String getDestFilePath() {
-        return destFilePath;
+    public String getFileName() {
+        return fileName;
     }
 
     /**
