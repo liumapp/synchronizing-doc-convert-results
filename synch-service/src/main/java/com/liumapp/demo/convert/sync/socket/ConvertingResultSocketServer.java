@@ -10,6 +10,9 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
@@ -27,6 +30,8 @@ public class ConvertingResultSocketServer {
 
     private static CopyOnWriteArraySet<ConvertingResultSocketServer> resultWebSet = new CopyOnWriteArraySet<ConvertingResultSocketServer>();
 
+    private static Map<Integer, Session> sessionPool = new HashMap<Integer, Session>();
+
     private Session session;
 
     private Integer convertId;
@@ -36,13 +41,16 @@ public class ConvertingResultSocketServer {
         this.session = session;
         this.convertId = convertId;
         resultWebSet.add(this);
+        sessionPool.put(convertId, session);
         logger.info("new  convert job in , the convertId is :" + convertId.toString());
     }
 
     @OnClose
     public void onClose () {
+        Integer convertId = this.convertId;
+        sessionPool.remove(convertId);
         resultWebSet.remove(this);
-        logger.info("convert job out , the convertId is :" + this.convertId.toString());
+        logger.info("convert job out , the convertId is :" + convertId.toString());
     }
 
     @OnMessage
@@ -53,6 +61,17 @@ public class ConvertingResultSocketServer {
     public void sendAll (String msg) {
         for (ConvertingResultSocketServer client: resultWebSet) {
             client.session.getAsyncRemote().sendText(msg);
+        }
+    }
+
+    public void sendMessage (String msg, Integer convertId) {
+        Session session = sessionPool.get(convertId);
+        if(session != null){
+            try {
+                session.getBasicRemote().sendText(msg);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
