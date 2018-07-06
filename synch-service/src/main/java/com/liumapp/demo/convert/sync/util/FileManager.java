@@ -1,5 +1,7 @@
 package com.liumapp.demo.convert.sync.util;
 
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import sun.misc.BASE64Decoder;
@@ -60,6 +62,14 @@ public class FileManager {
 
     public String getDestFilePath() {
         return destFilePath;
+    }
+
+    /**
+     * export file on browser
+     * @return response entity
+     */
+    public ResponseEntity<FileSystemResource> exportDownloadFile () {
+
     }
 
 }

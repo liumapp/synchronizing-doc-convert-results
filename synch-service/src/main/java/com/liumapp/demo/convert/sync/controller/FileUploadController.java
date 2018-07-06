@@ -24,7 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("upload")
-public class FileUpload {
+public class FileUploadController {
 
     @Autowired
     private FileManager fileManager;
