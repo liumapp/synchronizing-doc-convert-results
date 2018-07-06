@@ -29,25 +29,29 @@ public class ConvertingResultSocketServer {
 
     private Session session;
 
-    private String convertId;
+    private Integer convertId;
 
     @OnOpen
-    public void onOpen (Session session, @PathParam(value = "convertId") String convertId) {
+    public void onOpen (Session session, @PathParam(value = "convertId") Integer convertId) {
         this.session = session;
         this.convertId = convertId;
         resultWebSet.add(this);
-        logger.info("new  convert job in , the convertId is :" + convertId);
+        logger.info("new  convert job in , the convertId is :" + convertId.toString());
     }
 
     @OnClose
     public void onClose () {
         resultWebSet.remove(this);
-        logger.info("convert job out , the convertId is :" + this.convertId);
+        logger.info("convert job out , the convertId is :" + this.convertId.toString());
     }
 
     @OnMessage
     public void onMessage (String msg) {
-        logger.info("convert info: " + msg + ", the convertId is : " + this.convertId);
+        logger.info("convert info: " + msg + ", the convertId is : " + this.convertId.toString());
+    }
+
+    public void sendAll () {
+
     }
 
 }

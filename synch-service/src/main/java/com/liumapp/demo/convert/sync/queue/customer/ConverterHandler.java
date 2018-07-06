@@ -1,6 +1,8 @@
 package com.liumapp.demo.convert.sync.queue.customer;
 
+import com.alibaba.fastjson.JSON;
 import com.liumapp.convert.doc.Doc2PDF;
+import com.liumapp.demo.convert.sync.queue.pattern.ConvertDocPattern;
 import com.liumapp.demo.convert.sync.socket.ConvertingResultSocketServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,10 +28,12 @@ public class ConverterHandler {
     private static Logger logger = LoggerFactory.getLogger(ConverterHandler.class);
 
     @RabbitHandler
-    public void process (String docPath) {
-        logger.info("convert job begin , doc path is : " + docPath);
-        doc2PDF.doc2pdf(docPath + ".pdf", docPath);
-//        ConvertingResultSocketServer
+    public void process (String jsonPattern) {
+        logger.info("convert job begin , doc path is : " + jsonPattern);
+        ConvertDocPattern docPattern = JSON.parseObject(jsonPattern, ConvertDocPattern.class);
+
+        doc2PDF.doc2pdf(docPattern.getPdfPath(), docPattern.getDocPath());
+
     }
 
 }
