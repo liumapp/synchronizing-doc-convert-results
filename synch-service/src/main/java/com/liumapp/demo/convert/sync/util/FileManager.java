@@ -1,6 +1,8 @@
 package com.liumapp.demo.convert.sync.util;
 
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -8,6 +10,7 @@ import sun.misc.BASE64Decoder;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * @author liumapp
@@ -68,8 +71,24 @@ public class FileManager {
      * export file on browser
      * @return response entity
      */
-    public ResponseEntity<FileSystemResource> exportDownloadFile () {
+    public ResponseEntity<FileSystemResource> exportDownloadFile (File file) {
+        if (file == null) {
+            return null;
+        }
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Content-Disposition", "attachment; filename=" + System.currentTimeMillis() + ".pdf");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+        headers.add("Last-Modified", new Date().toString());
+        headers.add("ETag", String.valueOf(System.currentTimeMillis()));
 
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentLength(file.length())
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(new FileSystemResource(file));
     }
 
 }
