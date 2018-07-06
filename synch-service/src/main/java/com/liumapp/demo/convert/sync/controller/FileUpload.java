@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.liumapp.convert.doc.Doc2PDF;
 import com.liumapp.demo.convert.sync.entity.DocEntity;
 import com.liumapp.demo.convert.sync.entity.MultyDocEntity;
+import com.liumapp.demo.convert.sync.queue.producer.ConvertDocJobSender;
 import com.liumapp.demo.convert.sync.util.Base64File;
 import com.liumapp.demo.convert.sync.util.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class FileUpload {
     @Autowired
     private Doc2PDF doc2PDF;
 
+    @Autowired
+    private ConvertDocJobSender convertDocJobSender;
+
     @RequestMapping("/")
     public String upload (@RequestParam("file") MultipartFile file) throws IOException {
         fileManager.save(file);
@@ -55,7 +59,7 @@ public class FileUpload {
             for (MultyDocEntity doc : list) {
                 MultipartFile file = fileManager.base64toMultipart(doc.getContent());
                 fileManager.save(file);
-                doc2PDF.doc2pdf(fileManager.getDestFilePath() + ".pdf", fileManager.getDestFilePath());
+                convertDocJobSender.send(fileManager.getDestFilePath());
             }
         } catch (IOException e) {
             e.printStackTrace();

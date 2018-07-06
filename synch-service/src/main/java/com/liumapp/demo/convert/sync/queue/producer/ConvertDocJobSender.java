@@ -21,7 +21,7 @@ public class ConvertDocJobSender {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
-    public void send () {
+    public void send (String msg) {
         this.amqpTemplate.convertAndSend("test-queue" , "content");
     }
 
