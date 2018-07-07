@@ -23,6 +23,9 @@
     <Row>
       <Col span="12" offset="6">
         <div class="spin-container">
+          <div>
+            <!--todo push a table here-->
+          </div>
           <div class="spin-content">
             加载完成，点击下载
             <br>

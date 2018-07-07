@@ -75,8 +75,23 @@ export default {
     submitPic () {
       util.post('upload/multybase64', this.fileList).then(res => {
         this.$Message.success('file upload success!');
+        this.$emit('setDocData',this.handleDocList);
         this.$emit('next');
       });
+    },
+    /**
+     * 0: waiting convert ; 1: converting success
+     */
+    handleDocList () {
+      let docList = [];
+      this.fileList.forEach(function (e) {
+        docList.push({
+          name: e.name,
+          convertId: e.convertId,
+          status: 0
+        })
+      });
+      return docList;
     }
   }
 }
