@@ -49,11 +49,12 @@ export default {
       spinShow: true,
       ws: null,
       filename: '',
-      tableColumn: []
+      tableColumn: [],
+      tableData: []
     };
   },
   created () {
-    this.initColumn();
+    this.initTable();
   },
   mounted () {
     if ('window' in window) {
@@ -63,8 +64,9 @@ export default {
     }
   },
   methods: {
-    initColumn () {
+    initTable () {
       this.tableColumn = resultColumn.tableResultsColumn;
+
     },
     initSocket () {
       let _vue = this;
