@@ -71,6 +71,21 @@ export default {
     initTable () {
       this.tableColumn = resultColumn.tableResultsColumn;
       this.tableData = resultColumn.tableResultsData;
+      this.tableColumn.forEach (item => {
+        if (item.handle) {
+          item.render = (h, params) => {
+            const row = params.row;
+            const results = [];
+            if (row.status === 1) {
+              results.push(this.getDownloadButton(h, row));
+            } else {
+//           todo 转换失败的情况
+              results.push(this.getCancledButton(h, row));
+            }
+            return h('div', results);
+          };
+        }
+      });
 //      this.tableData = this.docList;
     },
     initSocket () {
