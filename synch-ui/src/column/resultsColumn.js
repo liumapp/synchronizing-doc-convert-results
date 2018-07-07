@@ -43,8 +43,20 @@ export const tableResultsColumn = [
   }
 ];
 
+export const tableResultsData = [
+  {
+    filename: 'a',
+    status: 0
+  },
+  {
+    filename: 'b',
+    statue: 0
+  }
+];
+
 const resultColumn = {
-  tableResultsColumn: tableResultsColumn
+  tableResultsColumn: tableResultsColumn,
+  tableResultsData: tableResultsData
 }
 
-export default tableResultsColumn;
+export default resultColumn;

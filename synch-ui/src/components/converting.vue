@@ -24,7 +24,7 @@
       <Col span="12" offset="6">
         <div class="spin-container">
           <div>
-            <Table stripe :ref="refs" :columns="tableColumn" :data="tableData"></Table>
+            <Table stripe :ref="tableRefs" :columns="tableColumn" :data="tableData"></Table>
           </div>
           <div class="spin-content">
             加载完成，点击下载
@@ -52,6 +52,7 @@ export default {
       spinShow: true,
       ws: null,
       filename: '',
+      tableRefs: 'convertingResultTable',
       tableColumn: [],
       tableData: [],
     };
@@ -69,7 +70,8 @@ export default {
   methods: {
     initTable () {
       this.tableColumn = resultColumn.tableResultsColumn;
-      this.tableData = this.docList;
+      this.tableData = resultColumn.tableResultsData;
+//      this.tableData = this.docList;
     },
     initSocket () {
       let _vue = this;
