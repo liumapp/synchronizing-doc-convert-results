@@ -105,6 +105,13 @@ export default {
     },
     getBack () {
       window.location.reload();
+    },
+    getDownloadButton (h, row) {
+
+    },
+//    todo
+    getCancledButton (h, row) {
+
     }
   }
 }
