@@ -29,7 +29,7 @@
             <Button type="success" @click="downloadPdf">下载</Button>
             <Button type="default" @click="getBack">返回首页</Button>
           </div>
-          <Spin size="large" fix v-if="spinShow" ></Spin>
+          <!--<Spin size="large" fix v-if="spinShow" ></Spin>-->
         </div>
       </Col>
     </Row>
