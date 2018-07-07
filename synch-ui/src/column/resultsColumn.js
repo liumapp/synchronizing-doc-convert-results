@@ -6,4 +6,8 @@
  * @date 7/7/18
  */
 
+export const tableResultsColumn = [
 
+];
+
+export default tableResultsColumn;
