@@ -48,8 +48,12 @@ export default {
     return {
       spinShow: true,
       ws: null,
-      filename: ''
+      filename: '',
+      tableColumn: []
     };
+  },
+  created () {
+    this.initColumn();
   },
   mounted () {
     if ('window' in window) {
@@ -59,6 +63,9 @@ export default {
     }
   },
   methods: {
+    initColumn () {
+      this.tableColumn = resultColumn.tableResultsColumn;
+    },
     initSocket () {
       let _vue = this;
       this.ws = new WebSocket(util.convertingResultSocket + "/" + this.convertId);

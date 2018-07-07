@@ -43,4 +43,8 @@ export const tableResultsColumn = [
   }
 ];
 
+const resultColumn = {
+  tableResultsColumn: tableResultsColumn
+}
+
 export default tableResultsColumn;
