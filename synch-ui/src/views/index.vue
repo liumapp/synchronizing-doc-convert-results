@@ -66,7 +66,7 @@ export default {
       this.people = event.data;
     },
     setDocData (uploadList) {
-
+      this.docList = uploadList;
     },
     nextStep () {
       this.current++;

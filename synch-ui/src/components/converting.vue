@@ -45,7 +45,7 @@ import resultColumn from '@/column/resultsColumn'
 export default {
   name: 'converting',
   props: [
-    'convertId'
+    'convertId', 'docLists'
   ],
   data () {
     return {
@@ -53,7 +53,7 @@ export default {
       ws: null,
       filename: '',
       tableColumn: [],
-      tableData: []
+      tableData: [],
     };
   },
   created () {
@@ -69,7 +69,7 @@ export default {
   methods: {
     initTable () {
       this.tableColumn = resultColumn.tableResultsColumn;
-
+      this.tableData = this.docList;
     },
     initSocket () {
       let _vue = this;
