@@ -40,7 +40,8 @@ export default {
       current: 1,
       people: 0,
       ws: null,
-      convertId: 0
+      convertId: 0,
+      docList: []
     };
   },
   created () {
@@ -64,13 +65,15 @@ export default {
     getMessage (event) {
       this.people = event.data;
     },
+    setDocData (uploadList) {
+
+    },
     nextStep () {
       this.current++;
     },
     prevStep () {
       this.current--;
     }
-
   }
 }
 </script>
