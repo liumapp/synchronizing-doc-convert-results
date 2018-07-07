@@ -41,8 +41,6 @@ export const tableResultsColumn = [
     align: 'center',
     handle: true
   }
-
-
 ];
 
 export default tableResultsColumn;

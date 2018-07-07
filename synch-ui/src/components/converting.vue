@@ -38,6 +38,7 @@
 </template>
 <script>
 import util from '@/libs/util'
+import resultColumn from '@/column/resultsColumn'
 export default {
   name: 'converting',
   props: [
