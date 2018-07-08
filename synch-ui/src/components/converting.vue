@@ -76,7 +76,7 @@ export default {
           item.render = (h, params) => {
             const row = params.row;
             const results = [];
-            if (row.status === 1) {
+            if (row.status == 1) {
               results.push(this.getDownloadButton(h, row));
             } else {
 //           todo 转换失败的情况
@@ -100,22 +100,23 @@ export default {
       this.$Message.success("convert success , the file is : " + event.data);
       this.spinShow = false;
     },
-    downloadPdf () {
-      window.open(util.ajaxUrl + "download/?filename=" + this.filename);
+        downloadPdf () {
+          window.open(util.ajaxUrl + "download/?filename=" + this.filename);
     },
-    getBack () {
-      window.location.reload();
-    },
-    getDownloadButton (h, row) {
-      return h('Button', {
-
-      }, [
-        h('Button', {
-          style: {
-            margin: '0 -15px'
+      getBack () {
+        window.location.reload();
+      },
+      getDownloadButton (h, row) {
+        return h('Button', {
+          props: {
+            type: 'success',
+          },
+          on: {
+            click: () => {
+              window.open(util.ajaxUrl + "download/?filename=" + row.filename);
+            }
           }
-        }, '下载')
-      ]);
+        }, '下载');
     },
 //    todo
     getCancledButton (h, row) {

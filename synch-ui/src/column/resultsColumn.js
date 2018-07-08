@@ -46,7 +46,7 @@ export const tableResultsColumn = [
 export const tableResultsData = [
   {
     filename: 'a',
-    status: 0
+    status: 1
   },
   {
     filename: 'b',
