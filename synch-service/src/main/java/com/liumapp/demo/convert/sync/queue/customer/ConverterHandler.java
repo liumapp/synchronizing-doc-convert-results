@@ -1,6 +1,7 @@
 package com.liumapp.demo.convert.sync.queue.customer;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.liumapp.convert.doc.Doc2PDF;
 import com.liumapp.demo.convert.sync.queue.pattern.ConvertDocPattern;
 import com.liumapp.demo.convert.sync.socket.ConvertingResultSocketServer;
@@ -33,7 +34,14 @@ public class ConverterHandler {
         Thread.sleep(3000);
         ConvertDocPattern docPattern = JSON.parseObject(jsonPattern, ConvertDocPattern.class);
         doc2PDF.doc2pdf(docPattern.getPdfPath() + "/" + docPattern.getSaveName(), docPattern.getDocPath() + "/" + docPattern.getOriginalName());
-        ConvertingResultSocketServer.sendMessage(jsonPattern, docPattern.getConvertId());
+        ConvertingResultSocketServer.sendMessage(responseJson(docPattern), docPattern.getConvertId());
+    }
+
+    private String responseJson (ConvertDocPattern docPattern) {
+        JSONObject object = new JSONObject();
+        object.put("index", docPattern.getFileIndex());
+        object.put("filename", docPattern.getSaveName());
+        return JSON.toJSONString(object);
     }
 
 }
