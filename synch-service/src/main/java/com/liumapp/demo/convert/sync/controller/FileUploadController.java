@@ -57,15 +57,18 @@ public class FileUploadController {
     @ResponseBody
     public String multyBase64Upload (@RequestBody MultyDocEntity[] list) {
         try {
+            int index = 0;
             for (MultyDocEntity doc : list) {
                 MultipartFile file = fileManager.base64toMultipart(doc.getContent());
                 fileManager.save(file);
+                convertDocPattern.setFileIndex(index);
                 convertDocPattern.setConvertId(doc.getConvertId());
                 convertDocPattern.setDocPath(fileManager.getSavePath());
                 convertDocPattern.setPdfPath(fileManager.getSavePath());
                 convertDocPattern.setOriginalName(fileManager.getFileName());
                 convertDocPattern.setSaveName(fileManager.getFileName() + ".pdf");
                 convertDocJobSender.send(JSON.toJSONString(convertDocPattern));
+                index++;
             }
         } catch (IOException e) {
             e.printStackTrace();
