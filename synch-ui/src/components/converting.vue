@@ -107,7 +107,15 @@ export default {
       window.location.reload();
     },
     getDownloadButton (h, row) {
+      return h('Button', {
 
+      }, [
+        h('Button', {
+          style: {
+            margin: '0 -15px'
+          }
+        }, '下载')
+      ]);
     },
 //    todo
     getCancledButton (h, row) {
