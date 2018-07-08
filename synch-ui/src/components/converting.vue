@@ -36,6 +36,7 @@
 
 </template>
 <script>
+import status from '@/libs/status'
 import util from '@/libs/util'
 import resultColumn from '@/column/resultsColumn'
 export default {
@@ -67,13 +68,14 @@ export default {
     initTable () {
       this.tableColumn = resultColumn.tableResultsColumn;
       this.tableData = resultColumn.tableResultsData;
+      console.log(this.tableData);
       //      this.tableData = this.docList;
       this.tableColumn.forEach (item => {
         if (item.handle) {
           item.render = (h, params) => {
             const row = params.row;
             const results = [];
-            if (row.status == 1) {
+            if (row.status == status.CONVERTED_SUCCESS) {
               results.push(this.getDownloadButton(h, row));
             } else {
 //           todo 转换失败的情况

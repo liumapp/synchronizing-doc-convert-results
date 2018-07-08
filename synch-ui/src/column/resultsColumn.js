@@ -5,7 +5,7 @@
  * @homepage http://www.liumapp.com
  * @date 7/7/18
  */
-import status from '@/libs/util';
+import status from '@/libs/status';
 
 export const tableResultsColumn = [
   {
