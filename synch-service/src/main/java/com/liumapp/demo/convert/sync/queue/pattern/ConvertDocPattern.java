@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConvertDocPattern {
 
+    private Integer fileIndex;
+
     private Integer convertId;
 
     private String docPath;
@@ -31,6 +33,23 @@ public class ConvertDocPattern {
         this.originalName = originalName;
         this.pdfPath = pdfPath;
         this.saveName = saveName;
+    }
+
+    public ConvertDocPattern(Integer fileIndex, Integer convertId, String docPath, String originalName, String pdfPath, String saveName) {
+        this.fileIndex = fileIndex;
+        this.convertId = convertId;
+        this.docPath = docPath;
+        this.originalName = originalName;
+        this.pdfPath = pdfPath;
+        this.saveName = saveName;
+    }
+
+    public Integer getFileIndex() {
+        return fileIndex;
+    }
+
+    public void setFileIndex(Integer fileIndex) {
+        this.fileIndex = fileIndex;
     }
 
     public String getOriginalName() {
