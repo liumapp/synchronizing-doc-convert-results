@@ -5,6 +5,7 @@
  * @homepage http://www.liumapp.com
  * @date 7/7/18
  */
+import status from '@/libs/util';
 
 export const tableResultsColumn = [
   {
@@ -26,8 +27,8 @@ export const tableResultsColumn = [
     align: 'center',
     render: (h, params) => {
       const row = params.row;
-      const text = row.status === 1 ? '成功' : '转换中';
-      const color = row.status === 1 ? 'green' : 'red';
+      const text = row.status === status.CONVERTED_SUCCESS ? '成功' : '转换中';
+      const color = row.status === status.CONVERTED_SUCCESS ? 'green' : 'red';
       return h('Tag', {
         props: {
           type: 'dot',
@@ -46,11 +47,11 @@ export const tableResultsColumn = [
 export const tableResultsData = [
   {
     filename: 'a',
-    status: 1
+    status: status.CONVERTED_SUCCESS
   },
   {
     filename: 'b',
-    statue: 0
+    statue: status.WAITING_CONVERT
   }
 ];
 
