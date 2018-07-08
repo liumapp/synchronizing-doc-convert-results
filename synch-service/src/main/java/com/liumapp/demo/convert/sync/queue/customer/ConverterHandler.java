@@ -33,7 +33,7 @@ public class ConverterHandler {
         Thread.sleep(3000);
         ConvertDocPattern docPattern = JSON.parseObject(jsonPattern, ConvertDocPattern.class);
         doc2PDF.doc2pdf(docPattern.getPdfPath() + "/" + docPattern.getSaveName(), docPattern.getDocPath() + "/" + docPattern.getOriginalName());
-        ConvertingResultSocketServer.sendMessage(docPattern.getSaveName(), docPattern.getConvertId());
+        ConvertingResultSocketServer.sendMessage(jsonPattern, docPattern.getConvertId());
     }
 
 }
