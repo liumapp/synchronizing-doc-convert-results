@@ -10,12 +10,9 @@
     display: inline-block;
     text-align: center;
     width: 500px;
-    height: 200px;
+    height: 225px;
     position: relative;
     border: none;
-    .spin-content {
-      padding-top: 65px;
-    }
   }
 </style>
 <template>
@@ -23,13 +20,12 @@
     <Row>
       <Col span="12" offset="6">
         <div class="spin-container">
+          <br>
           <div>
             <Table stripe :ref="tableRefs" :columns="tableColumn" :data="tableData"></Table>
           </div>
           <div class="spin-content">
-            加载完成，点击下载
             <br>
-            <Button type="success" @click="downloadPdf">下载</Button>
             <Button type="default" @click="getBack">返回首页</Button>
           </div>
           <!--<Spin size="large" fix v-if="spinShow" ></Spin>-->
