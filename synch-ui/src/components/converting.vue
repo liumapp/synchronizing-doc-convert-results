@@ -93,6 +93,10 @@ export default {
         _vue.getMessage(event);
       };
     },
+    /**
+     * the event is a json object
+     * contains {index, filename}
+     */
     getMessage (event) {
       this.filename = event.data;
       this.$Message.success("convert success , the file is : " + event.data);
