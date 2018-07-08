@@ -116,7 +116,22 @@ export default {
     },
 //    todo
     getCancledButton (h, row) {
+      let _vue = this;
+      return h('Button', {
+        props: {
+          type: 'warning',
+        },
+        on: {
+          click: () => {
+            _vue.tableData.forEach(item => {
+              if (item._index == row._index) {
 
+              }
+            });
+            console.log(row);
+          }
+        }
+      }, '取消')
     }
   }
 }
