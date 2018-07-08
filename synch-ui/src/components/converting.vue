@@ -123,12 +123,8 @@ export default {
         },
         on: {
           click: () => {
-            _vue.tableData.forEach(item => {
-              if (item._index == row._index) {
-
-              }
-            });
-            console.log(row);
+            let index = row._index--;
+            _vue.tableData.splice(index, 1);
           }
         }
       }, '取消')
