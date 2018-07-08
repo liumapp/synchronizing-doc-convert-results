@@ -114,7 +114,6 @@ export default {
           }
         }, '下载');
     },
-//    todo
     getCancledButton (h, row) {
       let _vue = this;
       return h('Button', {
