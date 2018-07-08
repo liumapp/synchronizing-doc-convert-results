@@ -67,6 +67,7 @@ export default {
     initTable () {
       this.tableColumn = resultColumn.tableResultsColumn;
       this.tableData = resultColumn.tableResultsData;
+      //      this.tableData = this.docList;
       this.tableColumn.forEach (item => {
         if (item.handle) {
           item.render = (h, params) => {
@@ -82,7 +83,6 @@ export default {
           };
         }
       });
-//      this.tableData = this.docList;
     },
     initSocket () {
       let _vue = this;
@@ -96,23 +96,23 @@ export default {
       this.$Message.success("convert success , the file is : " + event.data);
       this.spinShow = false;
     },
-        downloadPdf () {
-          window.open(util.ajaxUrl + "download/?filename=" + this.filename);
+    downloadPdf () {
+      window.open(util.ajaxUrl + "download/?filename=" + this.filename);
     },
-      getBack () {
-        window.location.reload();
-      },
-      getDownloadButton (h, row) {
-        return h('Button', {
-          props: {
-            type: 'success',
-          },
-          on: {
-            click: () => {
-              window.open(util.ajaxUrl + "download/?filename=" + row.filename);
-            }
+    getBack () {
+      window.location.reload();
+    },
+    getDownloadButton (h, row) {
+      return h('Button', {
+        props: {
+          type: 'success',
+        },
+        on: {
+          click: () => {
+            window.open(util.ajaxUrl + "download/?filename=" + row.filename);
           }
-        }, '下载');
+        }
+      }, '下载');
     },
     getCancledButton (h, row) {
       let _vue = this;
