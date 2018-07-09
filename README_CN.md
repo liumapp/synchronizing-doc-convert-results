@@ -1,6 +1,6 @@
 # 同步获取文档转换结果 
 
-![apache2.0](https://img.shields.io/badge/license-apache2.0-orange.svg?style=flat)
+[![Apache2.0](https://img.shields.io/badge/license-Apache2.0-orange.svg?style=flat)]( http://www.apache.org/licenses/)
 
 Doc文档的批量上传并转换为PDF文件，前端同步获取转换结果并提供下载。 
 

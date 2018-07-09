@@ -1,6 +1,6 @@
 # synchronizing-doc-convert-resultsm
- 
-![apache2.0](https://img.shields.io/badge/license-apache2.0-orange.svg?style=flat)
+
+[![Apache2.0](https://img.shields.io/badge/license-Apache2.0-orange.svg?style=flat)]( http://www.apache.org/licenses/)
 
 Synchronizing the result of document conversion . 
 
