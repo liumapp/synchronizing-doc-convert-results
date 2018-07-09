@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+  client-server:
+    container_name: client-server
+    restart: always
+    image: liumapp/client-server:v1.0.0
+    ports:
+      - 2020:2020
+    networks:
+      - simple-sdk
+
+  client-mysql:
+    container_name: client-mysql
+    image: mysql:5.5.60
+    restart: always
+    volumes:
+      - ./client-mysql-database/mysql/data:/var/lib/mysql
+      - ./client-mysql-database/mysql/conf/mysqld.conf:/etc/mysql/mysql.conf.d/mysqld.cnf
+    ports:
+      - "6603:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=adminadmin
+    networks:
+      - simple-sdk
+
+  sdk-server:
+    container_name: sdk-server
+    image: liumapp/sdk-server:v1.0.0
+    restart: always
+    ports:
+      - "3030:3030"
+    networks:
+      - simple-sdk
+
+networks:
+  simple-sdk:
+    driver: bridge
