@@ -9,6 +9,7 @@ services:
       - 2020:2020
     networks:
       - synchronizing-doc-convert-results
+          
 
   synch-rabbitmq:
     image: rabbitmq:3-management

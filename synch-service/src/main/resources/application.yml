@@ -6,11 +6,11 @@ spring:
       name: synch-service
     rabbitmq:
       port: 5672
-      host: localhost
+      host: synch-rabbitmq
       username: springcloud
       password: 123456
 
 liumapp:
   filemanager:
-    savePath: /usr/local/tomcat/project/synchronizing-doc-convert-results/data/
+    savePath: /synchronizing-doc-convert-results/data/
 
