@@ -66,9 +66,7 @@ export default {
   methods: {
     initTable () {
       this.tableColumn = resultColumn.tableResultsColumn;
-      this.tableData = resultColumn.tableResultsData;
-      console.log(this.tableData);
-      //      this.tableData = this.docList;
+      this.tableData = this.docList;
       this.tableColumn.forEach (item => {
         if (item.handle) {
           item.render = (h, params) => {
@@ -102,6 +100,7 @@ export default {
       this.tableData.forEach(item => {
         if (i == event.data.index) {
           _vue.tableData[i].savename = event.data.savename;
+          _vue.tableData[i].status = status.CONVERTED_SUCCESS;
         }
       });
       this.$Message.success("convert success , the file savename is : " + event.data.savename);
