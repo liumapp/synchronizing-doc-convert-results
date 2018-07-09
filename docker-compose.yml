@@ -9,7 +9,8 @@ services:
       - 2020:2020
     networks:
       - synchronizing-doc-convert-results
-          
+    volumes:
+      - ./data/:/synchronizing-doc-convert-results/data/
 
   synch-rabbitmq:
     image: rabbitmq:3-management
