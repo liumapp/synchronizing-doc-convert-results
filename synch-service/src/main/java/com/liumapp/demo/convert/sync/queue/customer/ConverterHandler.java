@@ -40,7 +40,7 @@ public class ConverterHandler {
     private String responseJson (ConvertDocPattern docPattern) {
         JSONObject object = new JSONObject();
         object.put("index", docPattern.getFileIndex());
-        object.put("filename", docPattern.getSaveName());
+        object.put("savename", docPattern.getSaveName());
         return JSON.toJSONString(object);
     }
 

@@ -48,7 +48,6 @@ export default {
     return {
       spinShow: true,
       ws: null,
-      filename: '',
       tableRefs: 'convertingResultTable',
       tableColumn: [],
       tableData: [],
@@ -98,9 +97,13 @@ export default {
      * contains {index, filename}
      */
     getMessage (event) {
-      this.filename = event.data;
-      this.$Message.success("convert success , the file is : " + event.data);
-      this.spinShow = false;
+      console.log(event.data);
+//      let i = 0;
+//      this.tableData.forEach(item => {
+//        if (i == event.data.)
+//      });
+//      this.$Message.success("convert success , the file is : " + event.data.savename);
+//      this.spinShow = false;
     },
     downloadPdf () {
       window.open(util.ajaxUrl + "download/?filename=" + this.filename);

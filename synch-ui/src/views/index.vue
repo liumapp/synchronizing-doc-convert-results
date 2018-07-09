@@ -37,7 +37,7 @@ export default {
   },
   data () {
     return {
-      current: 1,
+      current: 0,
       people: 0,
       ws: null,
       convertId: 0,
