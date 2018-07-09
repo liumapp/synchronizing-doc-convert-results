@@ -31,8 +31,8 @@ public class ConverterHandler {
     @RabbitHandler
     public void process (String jsonPattern) throws InterruptedException {
         logger.info("convert job begin , doc path is : " + jsonPattern);
-        Thread.sleep(3000);
         ConvertDocPattern docPattern = JSON.parseObject(jsonPattern, ConvertDocPattern.class);
+        Thread.sleep(1500);
         doc2PDF.doc2pdf(docPattern.getPdfPath() + "/" + docPattern.getSaveName(), docPattern.getDocPath() + "/" + docPattern.getOriginalName());
         ConvertingResultSocketServer.sendMessage(responseJson(docPattern), docPattern.getConvertId());
     }
