@@ -28,7 +28,6 @@
             <br>
             <Button type="default" @click="getBack">返回首页</Button>
           </div>
-          <!--<Spin size="large" fix v-if="spinShow" ></Spin>-->
         </div>
       </Col>
     </Row>
@@ -46,7 +45,6 @@ export default {
   ],
   data () {
     return {
-      spinShow: true,
       ws: null,
       tableRefs: 'convertingResultTable',
       tableColumn: [],
@@ -92,19 +90,21 @@ export default {
     },
     /**
      * the event is a json object
-     * contains {index, filename}
+     * contains {index, savename}
      */
     getMessage (event) {
+      console.log(event.data);
+      console.log(this.tableData[1]);
       let i = 0;
       let _vue = this;
       this.tableData.forEach(item => {
         if (i == event.data.index) {
           _vue.tableData[i].savename = event.data.savename;
           _vue.tableData[i].status = status.CONVERTED_SUCCESS;
+          i++;
         }
       });
       this.$Message.success("convert success , the file savename is : " + event.data.savename);
-      this.spinShow = false;
     },
     downloadPdf () {
       window.open(util.ajaxUrl + "download/?filename=" + this.filename);

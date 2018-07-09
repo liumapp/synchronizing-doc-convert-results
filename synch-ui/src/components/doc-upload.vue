@@ -86,7 +86,7 @@ export default {
       let docList = [];
       this.fileList.forEach(function (e) {
         docList.push({
-          name: e.name,
+          filename: e.name,
           convertId: e.convertId,
           status: 0
         })
