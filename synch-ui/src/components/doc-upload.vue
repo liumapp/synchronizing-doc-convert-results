@@ -14,7 +14,7 @@
           multiple
           type="drag"
           action="#"
-          accept=".doc"
+          accept=".doc, .docx"
           :before-upload="handleFileToBase64"
           :default-file-list="readyUploadFile"
           :on-remove="handleRmFile">
