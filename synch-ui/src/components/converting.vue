@@ -97,13 +97,15 @@ export default {
      * contains {index, filename}
      */
     getMessage (event) {
-      console.log(event.data);
-//      let i = 0;
-//      this.tableData.forEach(item => {
-//        if (i == event.data.)
-//      });
-//      this.$Message.success("convert success , the file is : " + event.data.savename);
-//      this.spinShow = false;
+      let i = 0;
+      let _vue = this;
+      this.tableData.forEach(item => {
+        if (i == event.data.index) {
+          _vue.tableData[i].savename = event.data.savename;
+        }
+      });
+      this.$Message.success("convert success , the file savename is : " + event.data.savename);
+      this.spinShow = false;
     },
     downloadPdf () {
       window.open(util.ajaxUrl + "download/?filename=" + this.filename);
