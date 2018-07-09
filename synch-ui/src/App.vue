@@ -1,3 +1,10 @@
+/**
+ * @file App.vue
+ * @author liumapp
+ * @email liumapp.com@gmail.com
+ * @homepage http://www.liumapp.com
+ * @date 7/9/18
+ */
 <template>
   <div id="app">
     <router-view/>
