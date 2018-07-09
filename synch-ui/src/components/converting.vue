@@ -42,7 +42,7 @@ import resultColumn from '@/column/resultsColumn'
 export default {
   name: 'converting',
   props: [
-    'convertId', 'docLists'
+    'convertId', 'docList'
   ],
   data () {
     return {

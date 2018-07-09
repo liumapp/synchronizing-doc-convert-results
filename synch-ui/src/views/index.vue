@@ -14,8 +14,8 @@
           <Step title="上传doc文档" content="form表单上传一个待转换的doc文档"></Step>
           <Step title="转换过程中" content="通过socket等待转换结果，成功后获取转换好的pdf文档"></Step>
         </Steps>
-        <doc-upload v-if="current == 0" @next="nextStep" :convertId="convertId"></doc-upload>
-        <converting v-if="current == 1" @next="nextStep" :convertId="convertId"></converting>
+        <doc-upload v-if="current == 0" @next="nextStep" @setDocData="setDocData" :convertId="convertId"></doc-upload>
+        <converting v-if="current == 1" :docList="docList" @next="nextStep" :convertId="convertId"></converting>
       </Card>
       </Col>
     </Row>

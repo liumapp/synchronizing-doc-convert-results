@@ -75,7 +75,7 @@ export default {
     submitPic () {
       util.post('upload/multybase64', this.fileList).then(res => {
         this.$Message.success('file upload success!');
-        this.$emit('setDocData',this.handleDocList);
+        this.$emit('setDocData',this.handleDocList());
         this.$emit('next');
       });
     },
