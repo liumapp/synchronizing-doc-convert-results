@@ -49,6 +49,7 @@ export default {
       tableRefs: 'convertingResultTable',
       tableColumn: [],
       tableData: [],
+      i: 0,
     };
   },
   created () {
@@ -93,7 +94,7 @@ export default {
      * contains {index, savename}
      */
     getMessage (event) {
-      let i = 0;
+      let i = this.i;
       let _vue = this;
       let data = event.data;
       data = JSON.parse(data);
@@ -102,6 +103,7 @@ export default {
           _vue.tableData[i].savename = data.savename;
           _vue.tableData[i].status = status.CONVERTED_SUCCESS;
           i++;
+          _vue.i++;
         }
       });
       this.$Message.success("convert success , the file savename is : " + data.savename);
