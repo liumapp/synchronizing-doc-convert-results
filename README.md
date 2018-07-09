@@ -1,6 +1,9 @@
 # synchronizing-doc-convert-resultsm 
 
+![Apache License](https://img.shields.io/github/license/mashape/apistatus.svg)
+
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg)
+
 
 Synchronizing the result of document conversion . 
 
