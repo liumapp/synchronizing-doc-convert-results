@@ -1,4 +1,10 @@
-# synchronizing-doc-convert-resultsm [![Apache-2.0](https://img.shields.io/badge/license-Apache-2.0-orange.svg?style=flat)]( http://www.apache.org/licenses/)
+# synchronizing-doc-convert-resultsm 
+
+[![Apache-2.0](https://img.shields.io/badge/license-Apache-2.0-orange.svg?style=flat)]( http://www.apache.org/licenses/)
+
+
+![PyPI - License](https://img.shields.io/pypi/l/Django.svg)
+
 
 Synchronizing the result of document conversion . 
 
