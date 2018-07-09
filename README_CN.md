@@ -47,6 +47,10 @@ Doc文档的批量上传并转换为PDF文件，前端同步获取转换结果�
 
 来启动容器
 
+启动后看起来像这样:
+
+![ui-show.gif](https://github.com/liumapp/synchronizing-doc-convert-results/blob/master/pic/ui-show.gif)
+
 之所以需要用到docker-compose进行容器的编排操作，是因为系统依赖于rabbitmq的支持
 
 rabbitmq本身的存在，是以一个独立的容器来运行，并通过配置docker-compose，使两者共享一个网关来进行数据交互
