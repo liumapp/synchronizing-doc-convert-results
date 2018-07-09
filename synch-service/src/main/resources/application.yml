@@ -4,6 +4,13 @@ server:
 spring:
   profiles:
     active: docker
+  thymeleaf:
+    suffix: .html
+    mode: LEGACYHTML5
+#      mode: HTML5
+    encoding: UTF-8
+    content-type: text/html; charset=utf-8
+    cache: false
 
 ---
 # docker环境
