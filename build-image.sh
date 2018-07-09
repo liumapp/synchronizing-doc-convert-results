@@ -14,7 +14,7 @@ echo '.'
 
 cd ./synch-service
 
-mvn clean install -Dmaven.skip.test=true
+mvn clean package -DskipTests=true docker:build
 
 
 
