@@ -1,9 +1,4 @@
-# synchronizing-doc-convert-resultsm 
-
-![Apache License](https://img.shields.io/github/license/mashape/apistatus.svg)
-
-![license](https://img.shields.io/github/license/mashape/apistatus.svg)
-
+# synchronizing-doc-convert-resultsm ![apache2.0](https://img.shields.io/badge/license-apache2.0-orange.svg?style=flat)
 
 Synchronizing the result of document conversion . 
 
