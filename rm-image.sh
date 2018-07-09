@@ -11,3 +11,5 @@ echo '$  Github:   https://github.com/liumapp                     $'
 echo '$                                                           $'
 echo '============================================================='
 echo '.'
+
+docker rmi liumapp/synchronizing-doc-convert-results:v1.0.0

@@ -12,6 +12,10 @@ echo '$                                                           $'
 echo '============================================================='
 echo '.'
 
+cd ./synch-service
+
+mvn clean install -Dmaven.skip.test=true
+
 
 
 
