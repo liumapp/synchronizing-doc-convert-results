@@ -1,38 +1,29 @@
 version: '2'
 
 services:
-  client-server:
-    container_name: client-server
+  synch-service:
+    container_name: synch-service
     restart: always
-    image: liumapp/client-server:v1.0.0
+    image: liumapp/synchronizing-doc-convert-results:v1.0.0
     ports:
       - 2020:2020
     networks:
-      - simple-sdk
+      - synchronizing-doc-convert-results
 
-  client-mysql:
-    container_name: client-mysql
-    image: mysql:5.5.60
+  synch-rabbitmq:
+    image: rabbitmq:3-management
     restart: always
-    volumes:
-      - ./client-mysql-database/mysql/data:/var/lib/mysql
-      - ./client-mysql-database/mysql/conf/mysqld.conf:/etc/mysql/mysql.conf.d/mysqld.cnf
-    ports:
-      - "6603:3306"
+    container_name: synch-rabbitmq
+    hostname: synch-rabbitmq
     environment:
-      - MYSQL_ROOT_PASSWORD=adminadmin
-    networks:
-      - simple-sdk
-
-  sdk-server:
-    container_name: sdk-server
-    image: liumapp/sdk-server:v1.0.0
-    restart: always
+      RABBITMQ_DEFAULT_USER: "springcloud"
+      RABBITMQ_DEFAULT_PASS: "123456"
     ports:
-      - "3030:3030"
+      - "5672:5672"
+      - "15672:15672" 
     networks:
-      - simple-sdk
+      - synchronizing-doc-convert-results
 
 networks:
-  simple-sdk:
+  synchronizing-doc-convert-results:
     driver: bridge
