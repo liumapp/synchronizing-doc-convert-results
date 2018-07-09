@@ -121,7 +121,7 @@ export default {
         },
         on: {
           click: () => {
-            window.open(util.ajaxUrl + "download/?filename=" + row.filename);
+            window.open(util.ajaxUrl + "download/?filename=" + row.savename);
           }
         }
       }, '下载');

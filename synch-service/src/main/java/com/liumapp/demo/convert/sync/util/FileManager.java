@@ -77,7 +77,7 @@ public class FileManager {
         }
         HttpHeaders headers = new HttpHeaders();
         headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
-        headers.add("Content-Disposition", "attachment; filename=" + System.currentTimeMillis() + ".pdf");
+        headers.add("Content-Disposition", "attachment; filename=" + file.getName());
         headers.add("Pragma", "no-cache");
         headers.add("Expires", "0");
         headers.add("Last-Modified", new Date().toString());
