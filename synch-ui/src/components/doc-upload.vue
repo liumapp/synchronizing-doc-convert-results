@@ -73,11 +73,18 @@ export default {
       });
     },
     submitPic () {
-      util.post('upload/multybase64', this.fileList).then(res => {
-        this.$Message.success('file upload success!');
-        this.$emit('setDocData',this.handleDocList());
-        this.$emit('next');
-      });
+      if (!this.isEmpty()) {
+        util.post('upload/multybase64', this.fileList).then(res => {
+          this.$Message.success('file upload success!');
+          this.$emit('setDocData',this.handleDocList());
+          this.$emit('next');
+        });
+      } else {
+        this.$Message.error('请至少上传一个doc文件');
+      }
+    },
+    isEmpty () {
+      return this.fileList.length == 0;
     },
     /**
      * 0: waiting convert ; 1: converting success
