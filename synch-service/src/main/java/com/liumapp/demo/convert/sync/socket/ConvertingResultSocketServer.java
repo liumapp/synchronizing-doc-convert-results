@@ -59,7 +59,11 @@ public class ConvertingResultSocketServer {
 
     public static void sendAll (String msg) {
         for (ConvertingResultSocketServer client: resultWebSet) {
-            client.session.getAsyncRemote().sendText(msg);
+            try {
+                client.session.getAsyncRemote().sendText(msg);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

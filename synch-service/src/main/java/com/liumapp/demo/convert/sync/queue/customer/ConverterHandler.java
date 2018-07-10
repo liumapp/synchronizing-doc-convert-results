@@ -29,7 +29,7 @@ public class ConverterHandler {
     private static Logger logger = LoggerFactory.getLogger(ConverterHandler.class);
 
     @RabbitHandler
-    public void process (String jsonPattern) throws InterruptedException {
+    public void process (String jsonPattern) throws Exception {
         logger.info("convert job begin , doc path is : " + jsonPattern);
         ConvertDocPattern docPattern = JSON.parseObject(jsonPattern, ConvertDocPattern.class);
         Thread.sleep(1500);
