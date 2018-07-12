@@ -92,7 +92,7 @@ so, if you want to run both frontend and backend projects at the same time, your
 
 but considering that most developers do not choose the full stack as their own development discovery, the project provides some convenience for pure java developers.
 
-synch-service uses thymeleaf to load static files coming from synch-ui compiled and already completed the configuration, so pure java developers only need to import synch-service into IDEA(import process omission), and access to http://localhost:2020 after startup to see system effects.
+synch-service uses thymeleaf to load static files coming from synch-ui compiled and already completed the configuration, so pure java developers only need to import synch-service into IDEA(import process omission), and update application.yml to set spring.profiles.active=dev, and access to http://localhost:2020 after startup to see system effects.
 
 at the same time, if you are a pure frontend developer, and you already open the synch-ui project in webstorm and make use of it by running:
 
