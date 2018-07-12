@@ -39,12 +39,8 @@ public class ConvertingResultSocketServer {
     public void onOpen (Session session, @PathParam(value = "convertId") Integer convertId) {
         this.session = session;
         this.convertId = convertId;
-        try {
-            resultWebSet.add(this);
-            sessionPool.put(convertId.toString(), session);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        resultWebSet.add(this);
+        sessionPool.put(convertId.toString(), session);
         logger.info("new  convert job in , the convertId is :" + convertId.toString());
     }
 
