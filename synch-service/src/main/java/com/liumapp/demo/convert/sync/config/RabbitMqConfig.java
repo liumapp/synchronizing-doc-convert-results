@@ -32,19 +32,4 @@ public class RabbitMqConfig {
         return new Queue("auto-job-queue");
     }
 
-    @Bean
-    public MessageListenerAdapter messageListenerAdapter () {
-        return new MessageListenerAdapter();
-    }
-
-    @Bean
-    SimpleMessageListenerContainer container (ConnectionFactory connectionFactory,
-                                              MessageListenerAdapter listenerAdapter) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory);
-        container.setQueueNames("auto-job-queue");
-        container.setMessageListener(listenerAdapter);
-        container.setAcknowledgeMode(AcknowledgeMode.MANUAL);
-        return container;
-    }
 }
