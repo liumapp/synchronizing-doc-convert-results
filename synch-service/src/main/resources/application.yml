@@ -42,8 +42,6 @@ spring:
     publisher-confirms: true
     publisher-returns: true
     listener:
-      direct:
-        acknowledge-mode: manual
       simple:
         acknowledge-mode: manual
 liumapp:

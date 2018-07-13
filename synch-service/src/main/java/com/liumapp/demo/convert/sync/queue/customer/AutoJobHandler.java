@@ -1,5 +1,8 @@
 package com.liumapp.demo.convert.sync.queue.customer;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import com.liumapp.demo.convert.sync.queue.pattern.AutoJobPattern;
 import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +37,18 @@ public class AutoJobHandler implements ChannelAwareMessageListener {
     public void onMessage(Message message, Channel channel) throws Exception {
         boolean success = false;
         try {
-            
+            AutoJobPattern autoJobPattern = JSON.parseObject(new String(message.getBody()), new TypeReference<AutoJobPattern>() {});
+            logger.info("get msg : " + autoJobPattern.toString());
+            atomicInteger.incrementAndGet();
+            success = true;
+        } finally {
+            if (success) {
+                logger.info("auto job get , using ack ...");
+                channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+            } else {
+                logger.info("auto job failed, using nack ...");
+                channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, true);
+            }
         }
     }
 
