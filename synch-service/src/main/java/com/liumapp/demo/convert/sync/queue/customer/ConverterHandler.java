@@ -10,7 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
 import org.springframework.stereotype.Component;
+
+import java.nio.channels.Channel;
 
 /**
  * @author liumapp
@@ -29,7 +32,7 @@ public class ConverterHandler {
     private static Logger logger = LoggerFactory.getLogger(ConverterHandler.class);
 
     @RabbitHandler
-    public void process (String jsonPattern) throws Exception {
+    public void process (String jsonPattern, Channel channel) throws Exception {
         logger.info("convert job begin , doc path is : " + jsonPattern);
         ConvertDocPattern docPattern = JSON.parseObject(jsonPattern, ConvertDocPattern.class);
         Thread.sleep(1500);
