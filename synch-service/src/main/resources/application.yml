@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: dev
+    active: docker
   thymeleaf:
     suffix: .html
     mode: LEGACYHTML5
