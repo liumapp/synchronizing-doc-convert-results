@@ -39,6 +39,13 @@ spring:
     host: localhost
     username: springcloud
     password: 123456
+    publisher-confirms: true
+    publisher-returns: true
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual
 liumapp:
   filemanager:
     savePath: /usr/local/tomcat/project/synchronizing-doc-convert-results/data/
