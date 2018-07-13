@@ -90,7 +90,7 @@ rabbitmq本身的存在，是以一个独立的容器来运行，并通过配置
 
 但考虑到大部分开发人员并不会选择全栈作为自己的发展发现，所以为纯Java开发人员提供了一定的便利性：
 
-synch-service利用thymeleaf已经加载了synch-ui编译后的静态文件，并完成了相关配置，所以纯Java开发人员只需要将synch-service导入IDEA（导入过程省略），并且修改application.yml配置文件的spring.profiles.active值为dev，在启动后访问 http://localhost:2020 也可以查看系统效果。
+synch-service利用thymeleaf已经加载了synch-ui编译后的静态文件，并完成了相关配置，所以纯Java开发人员只需要将synch-service导入IDEA（导入过程省略），并且修改application.yml配置文件的spring.profiles.active值为dev，然后修改liumapp.filemanager.savepath的值为${您本地项目的data绝对目录地址}，在启动后访问 http://localhost:2020 也可以查看系统效果。
 
 与此同时，如果您是一名纯前端开发人员，在webstorm中打开了synch-ui项目，并利用 
 
