@@ -1,6 +1,8 @@
-package com.liumapp.demo.convert.sync.queue.publisher;
+package com.liumapp.demo.convert.sync.queue.publisher.service;
 
+import com.liumapp.demo.convert.sync.queue.publisher.BasicPublisher;
 import org.springframework.amqp.rabbit.support.CorrelationData;
+import org.springframework.stereotype.Service;
 
 /**
  * @author liumapp
@@ -9,8 +11,8 @@ import org.springframework.amqp.rabbit.support.CorrelationData;
  * @homepage http://www.liumapp.com
  * @date 7/13/18
  */
+@Service
 public class TestPubliserService extends BasicPublisher {
-
 
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
