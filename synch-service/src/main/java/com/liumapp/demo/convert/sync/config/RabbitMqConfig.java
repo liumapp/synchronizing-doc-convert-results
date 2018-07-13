@@ -1,6 +1,11 @@
 package com.liumapp.demo.convert.sync.config;
 
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,13 +24,25 @@ public class RabbitMqConfig {
     private String queueExchange;
 
     @Value("${spring.rabbitmq.routingkey}")
-    private String routingkey;
+    private String routingKey;
 
     @Bean
     public Queue docConvertQueue () {
         return new Queue("doc-convert-queue");
     }
 
+    @Bean
+    public MessageConverter messageConverter () {
+        return new JsonMessageConverter();
+    }
 
-
+    @Bean
+    public RabbitTemplate template (ConnectionFactory connectionFactory, MessageConverter messageConverter) {
+        RabbitTemplate template = new RabbitTemplate(connectionFactory);
+        template.setMandatory(true);
+        template.setExchange(queueExchange);
+        template.setRoutingKey(routingKey);
+        template.setMessageConverter(messageConverter);
+        return template;
+    }
 }
