@@ -14,6 +14,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestPubliserService extends BasicPublisher {
 
+    public void send (String remark) {
+
+    }
+
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
 
