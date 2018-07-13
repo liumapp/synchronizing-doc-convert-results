@@ -12,20 +12,31 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestPattern {
 
-    private String content;
+    private String sendContent;
+
+    private String returnContent;
 
     public TestPattern() {
     }
 
-    public TestPattern(String content) {
-        this.content = content;
+    public TestPattern(String sendContent, String returnContent) {
+        this.sendContent = sendContent;
+        this.returnContent = returnContent;
     }
 
-    public String getContent() {
-        return content;
+    public String getSendContent() {
+        return sendContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setSendContent(String sendContent) {
+        this.sendContent = sendContent;
+    }
+
+    public String getReturnContent() {
+        return returnContent;
+    }
+
+    public void setReturnContent(String returnContent) {
+        this.returnContent = returnContent;
     }
 }
