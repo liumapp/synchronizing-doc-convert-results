@@ -1,9 +1,11 @@
 package com.liumapp.demo.convert.sync.config;
 
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import org.springframework.amqp.core.Queue;
+import com.liumapp.demo.convert.sync.aware.RabbitMqListenerAware;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.amqp.support.converter.JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +30,7 @@ public class RabbitMqConfig {
 
     @Bean
     public Queue docConvertQueue () {
-        return new Queue("doc-convert-queue");
+        return new Queue("doc-convert-queue", true);
     }
 
     @Bean
@@ -44,5 +46,33 @@ public class RabbitMqConfig {
         template.setRoutingKey(routingKey);
         template.setMessageConverter(messageConverter);
         return template;
+    }
+
+    @Bean
+    public MessageListenerAdapter messageListenerAdapter(RabbitMqListenerAware listenerAware, MessageConverter converter) {
+        return new MessageListenerAdapter(listenerAware, converter);
+    }
+
+    @Bean
+    public SimpleMessageListenerContainer container (ConnectionFactory connectionFactory, MessageListenerAdapter messageListenerAdapter, Queue... queues) {
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory);
+        container.setQueues(queues);
+        container.setExposeListenerChannel(true);
+        container.setMaxConcurrentConsumers(10);
+        container.setConcurrentConsumers(5);
+        container.setPrefetchCount(1000);
+        container.setAcknowledgeMode(AcknowledgeMode.MANUAL);
+        container.setMessageListener(messageListenerAdapter);
+        return container;
+    }
+
+    @Bean
+    public TopicExchange exchange () {
+        return new TopicExchange(queueExchange);
+    }
+
+    @Bean
+    public Binding binding (Queue queue, TopicExchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with(routingKey);
     }
 }
