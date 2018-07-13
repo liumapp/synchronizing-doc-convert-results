@@ -1,19 +1,16 @@
 package com.liumapp.demo.convert.sync.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.liumapp.convert.doc.Doc2PDF;
 import com.liumapp.demo.convert.sync.entity.DocEntity;
 import com.liumapp.demo.convert.sync.entity.MultyDocEntity;
 import com.liumapp.demo.convert.sync.queue.pattern.ConvertDocPattern;
-import com.liumapp.demo.convert.sync.queue.producer.ConvertDocJobSender;
-import com.liumapp.demo.convert.sync.util.Base64File;
+import com.liumapp.demo.convert.sync.queue.publisher.ConvertDocJobSender;
 import com.liumapp.demo.convert.sync.util.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @author liumapp

@@ -1,4 +1,4 @@
-package com.liumapp.demo.convert.sync.queue.producer;
+package com.liumapp.demo.convert.sync.queue.publisher;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

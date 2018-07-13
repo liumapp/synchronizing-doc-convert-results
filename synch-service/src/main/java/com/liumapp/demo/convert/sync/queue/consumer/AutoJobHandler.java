@@ -1,4 +1,4 @@
-package com.liumapp.demo.convert.sync.queue.customer;
+package com.liumapp.demo.convert.sync.queue.consumer;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;

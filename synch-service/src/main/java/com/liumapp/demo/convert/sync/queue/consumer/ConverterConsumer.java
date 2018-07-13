@@ -1,4 +1,4 @@
-package com.liumapp.demo.convert.sync.queue.customer;
+package com.liumapp.demo.convert.sync.queue.consumer;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
 import org.springframework.stereotype.Component;
 
 import java.nio.channels.Channel;
@@ -24,12 +23,12 @@ import java.nio.channels.Channel;
  */
 @Component
 @RabbitListener(queues = "doc-convert-queue")
-public class ConverterHandler {
+public class ConverterConsumer {
 
     @Autowired
     private Doc2PDF doc2PDF;
 
-    private static Logger logger = LoggerFactory.getLogger(ConverterHandler.class);
+    private static Logger logger = LoggerFactory.getLogger(ConverterConsumer.class);
 
     @RabbitHandler
     public void process (String jsonPattern, Channel channel) throws Exception {

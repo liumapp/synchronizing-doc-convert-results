@@ -1,4 +1,4 @@
-package com.liumapp.demo.convert.sync.queue.producer;
+package com.liumapp.demo.convert.sync.queue.publisher;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +20,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date 7/6/18
  */
 @Component
-public class ConvertDocJobSender implements RabbitTemplate.ReturnCallback, RabbitTemplate.ConfirmCallback, InitializingBean {
+public class ConvertDocJobPublisher implements RabbitTemplate.ReturnCallback, RabbitTemplate.ConfirmCallback, InitializingBean {
 
-    private static Logger logger = LoggerFactory.getLogger(ConvertDocJobSender.class);
+    private static Logger logger = LoggerFactory.getLogger(ConvertDocJobPublisher.class);
 
     @Autowired
     private AmqpTemplate amqpTemplate;
