@@ -1,14 +1,7 @@
 package com.liumapp.demo.convert.sync.config;
 
-import org.springframework.amqp.core.AcknowledgeMode;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
-import org.springframework.amqp.support.converter.MessageConversionException;
-import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,14 +15,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMqConfig {
 
+    @Value("${spring.rabbitmq.exchange}")
+    private String queueExchange;
+
+    @Value("${spring.rabbitmq.routingkey}")
+    private String routingkey;
+
     @Bean
     public Queue docConvertQueue () {
         return new Queue("doc-convert-queue");
     }
 
-    @Bean
-    public Queue autoJobQueue () {
-        return new Queue("auto-job-queue");
-    }
+
 
 }
