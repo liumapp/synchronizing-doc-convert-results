@@ -46,8 +46,13 @@ public class AutoJobSender implements RabbitTemplate.ReturnCallback, RabbitTempl
         rabbitTemplate.convertAndSend(exchange, routingKey, message, correlationData);
     }
 
+    /**
+     * ACK=true仅仅标示消息已被Broker接收到，并不表示已成功投放至消息队列中
+     * ACK=false标示消息由于Broker处理错误，消息并未处理成功
+     */
     @Override
-    public void confirm(CorrelationData correlationData, boolean b, String s) {
+    public void confirm(CorrelationData correlationData, boolean ack, String s) {
+        logger.info("job id: " + correlationData + " confirmed " + (ack ? "success" : "failed") );
     }
 
     /**
@@ -59,8 +64,13 @@ public class AutoJobSender implements RabbitTemplate.ReturnCallback, RabbitTempl
         logger.error("auto job sender failed: " + Arrays.toString(message.getBody()));
     }
 
+    /**
+     * 设置消息送达、确认的方式
+     */
     @Override
     public void afterPropertiesSet() throws Exception {
-
+        rabbitTemplate.setConfirmCallback(this::confirm);
+        rabbitTemplate.setReturnCallback(this::returnedMessage);
     }
+
 }
