@@ -11,6 +11,8 @@ import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.annotation.Resource;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * @author liumapp
@@ -39,8 +41,13 @@ public abstract class BasicPublisher implements ConfirmCallback {
         rabbitTemplate.convertAndSend(routingKey, request, new MessagePostProcessor() {
             @Override
             public Message postProcessMessage(Message message) throws AmqpException {
-
-                return null;
+                message.getMessageProperties().setAppId(appId);
+                message.getMessageProperties().setTimestamp(new Date());
+                message.getMessageProperties().setMessageId(UUID.randomUUID().toString());
+                message.getMessageProperties().setCorrelationIdString(correlationId.toString());
+                message.getMessageProperties().setHeader("ServiceMethodName", serviceMethodName);
+                message.getMessageProperties().setHeader("ServiceName", serviceName);
+                return message;
             }
         }, new CorrelationData(correlationId));
     }
