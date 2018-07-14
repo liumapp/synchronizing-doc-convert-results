@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @date 7/13/18
  */
 @Service
-public class TestPubliserService extends BasicPublisher {
+public class TestPublisherService extends BasicPublisher {
 
     @Autowired
     private TestPattern testPattern;
