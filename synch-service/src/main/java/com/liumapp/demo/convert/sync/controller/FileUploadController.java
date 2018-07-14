@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.liumapp.demo.convert.sync.entity.DocEntity;
 import com.liumapp.demo.convert.sync.entity.MultyDocEntity;
 import com.liumapp.demo.convert.sync.queue.pattern.ConvertDocPattern;
-import com.liumapp.demo.convert.sync.queue.publisher.ConvertDocJobSender;
+import com.liumapp.demo.convert.sync.queue.publisher.ConvertDocJobPublisher;
 import com.liumapp.demo.convert.sync.util.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,7 @@ public class FileUploadController {
     private FileManager fileManager;
 
     @Autowired
-    private ConvertDocJobSender convertDocJobSender;
+    private ConvertDocJobPublisher convertDocJobPublisher;
 
     @Autowired
     private ConvertDocPattern convertDocPattern;
@@ -64,7 +64,7 @@ public class FileUploadController {
                 convertDocPattern.setPdfPath(fileManager.getSavePath());
                 convertDocPattern.setOriginalName(fileManager.getFileName());
                 convertDocPattern.setSaveName(fileManager.getFileName() + ".pdf");
-                convertDocJobSender.send(JSON.toJSONString(convertDocPattern));
+                convertDocJobPublisher.send(JSON.toJSONString(convertDocPattern));
                 index++;
             }
         } catch (IOException e) {
