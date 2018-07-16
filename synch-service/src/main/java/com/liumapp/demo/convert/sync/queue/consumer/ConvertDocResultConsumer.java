@@ -1,4 +1,4 @@
-package com.liumapp.demo.convert.sync.queue.publisher.service;
+package com.liumapp.demo.convert.sync.queue.consumer;
 
 import org.springframework.stereotype.Service;
 
@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
  * @date 7/16/18
  */
 @Service
-public class ConvertDocResultService {
+public class ConvertDocResultConsumer {
 
-    
+
 
 }
