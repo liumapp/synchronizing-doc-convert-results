@@ -40,10 +40,4 @@ public class TestPublisherService extends BasicPublisher {
         }
     }
 
-    @Override
-    public void returnedMessage(Message message, int i, String s, String s1, String s2) {
-        logger.info("test publisher get return info : the message is " + message.toString()
-            + "the i is : " + i  + " the s1 is : " + s1 + "the s2 is : " + s2);
-
-    }
 }

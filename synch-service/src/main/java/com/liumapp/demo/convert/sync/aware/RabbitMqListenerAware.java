@@ -52,11 +52,11 @@ public class RabbitMqListenerAware implements ChannelAwareMessageListener, Appli
                 channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, false);
                 throw new SecurityException("unknow app Id : " + message.getMessageProperties().getAppId());
             }
-            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
             Object service = applicationContext.getBean(message.getMessageProperties().getHeaders().get("ServiceName").toString());
             String serviceMethodName = message.getMessageProperties().getHeaders().get("ServiceMethodName").toString();
             Method method = service.getClass().getMethod(serviceMethodName, msg.getClass());
             method.invoke(service, msg);
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
         } catch (Exception e) {
             logger.error("-------- err " + e.getMessage());
             channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, false);
