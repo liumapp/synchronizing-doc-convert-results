@@ -1,5 +1,8 @@
 package com.liumapp.demo.convert.sync.socket;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.liumapp.demo.convert.sync.config.ConvertConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -78,6 +81,28 @@ public class ConvertingResultSocketServer {
         if(session != null) {
             try {
                 session.getAsyncRemote().sendText(msg);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void sendStatusMessage (JSONObject msg, Integer convertId) {
+        Integer status = msg.getInteger("status");
+        Session session = null;
+        if (status == ConvertConfig.ConvertStatus.CONVERTED_SUCCESS) {
+            logger.info("convert success , send msg to frontend : " + msg);
+        } else if (status == ConvertConfig.ConvertStatus.CONVERTED_FAILD) {
+            logger.error("convert failed , send msg to frontend : " + msg);
+        }
+
+        if (sessionPool.size() > 0 && convertId != null) {
+            session = sessionPool.get(convertId.toString());
+        }
+
+        if (session != null) {
+            try {
+                session.getAsyncRemote().sendText(JSON.toJSONString(msg));
             } catch (Exception e) {
                 e.printStackTrace();
             }

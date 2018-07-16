@@ -2,6 +2,7 @@ package com.liumapp.demo.convert.sync.queue.consumer;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.liumapp.demo.convert.sync.config.ConvertConfig;
 import com.liumapp.demo.convert.sync.queue.pattern.ConvertDocPattern;
 import com.liumapp.demo.convert.sync.queue.pattern.QueueJobErrorInfoPattern;
 import com.liumapp.demo.convert.sync.socket.ConvertingResultSocketServer;
@@ -26,14 +27,15 @@ public class QueueJobErrorInfoConsumer {
 
     private void handleConvertError (String info) {
         ConvertDocPattern docPattern = JSON.parseObject(info, ConvertDocPattern.class);
-        ConvertingResultSocketServer.sendMessage(responseJson(docPattern), docPattern.getConvertId());
+        ConvertingResultSocketServer.sendStatusMessage(responseConvertJson(docPattern), docPattern.getConvertId());
     }
 
-    private String responseJson (ConvertDocPattern docPattern) {
+    private JSONObject responseConvertJson (ConvertDocPattern docPattern) {
         JSONObject object = new JSONObject();
         object.put("index", docPattern.getFileIndex());
         object.put("savename", docPattern.getSaveName());
-        return JSON.toJSONString(object);
+        object.put("status", ConvertConfig.ConvertStatus.CONVERTED_FAILD);
+        return object;
     }
 
 }

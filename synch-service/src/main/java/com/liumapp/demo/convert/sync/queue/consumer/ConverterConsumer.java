@@ -3,6 +3,7 @@ package com.liumapp.demo.convert.sync.queue.consumer;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.liumapp.convert.doc.Doc2PDF;
+import com.liumapp.demo.convert.sync.config.ConvertConfig;
 import com.liumapp.demo.convert.sync.queue.pattern.ConvertDocPattern;
 import com.liumapp.demo.convert.sync.queue.pattern.QueueJobErrorInfoPattern;
 import com.liumapp.demo.convert.sync.queue.publisher.service.QueueJobErrorInfoPublisher;
@@ -44,7 +45,7 @@ public class ConverterConsumer {
         Thread.sleep(1500);
         try {
             doc2PDF.doc2pdf(docPattern.getPdfPath() + "/" + docPattern.getSaveName(), docPattern.getDocPath() + "/" + docPattern.getOriginalName());
-            ConvertingResultSocketServer.sendMessage(responseJson(docPattern), docPattern.getConvertId());
+            ConvertingResultSocketServer.sendStatusMessage(responseJson(docPattern), docPattern.getConvertId());
         } catch (Exception e) {
             // send msg to convert doc result that convert failed.
             queueJobErrorInfoPattern.setServiceName(this.getClass().getName());
@@ -54,11 +55,12 @@ public class ConverterConsumer {
         }
     }
 
-    private String responseJson (ConvertDocPattern docPattern) {
+    private JSONObject responseJson (ConvertDocPattern docPattern) {
         JSONObject object = new JSONObject();
         object.put("index", docPattern.getFileIndex());
         object.put("savename", docPattern.getSaveName());
-        return JSON.toJSONString(object);
+        object.put("status", ConvertConfig.ConvertStatus.CONVERTED_SUCCESS);
+        return object;
     }
 
 }

@@ -20,7 +20,7 @@ public class ConvertConfig {
         return new Doc2PDF();
     }
 
-    public static class convertStatus {
+    public static class ConvertStatus {
         public static Integer WAITING_CONVERT = 0;
 
         public static Integer CONVERTED_FAILD = 2;
