@@ -11,6 +11,7 @@ import org.springframework.amqp.support.converter.JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -30,8 +31,8 @@ public class RabbitMqConfig {
     private String routingKey;
 
     @Bean
-    public Queue docConvertQueue () {
-        return new Queue("doc-convert-queue", true);
+    public Queue synchQueue () {
+        return new Queue("synch-queue", true);
     }
 
     @Bean

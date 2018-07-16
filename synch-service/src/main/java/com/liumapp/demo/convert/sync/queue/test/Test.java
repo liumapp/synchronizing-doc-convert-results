@@ -30,7 +30,7 @@ public class Test {
      * on prod model
      * plz annotate thie method
      */
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(fixedDelay = 3000)
     public void send () {
         logger.info("test begin ");
         testPublisherService.send("send test msg at : " + new Date());

@@ -26,7 +26,7 @@ public class TestPublisherService extends BasicPublisher {
     public void send (String msg) {
         testPattern.setSendContent(msg);
         logger.info("sender: " + testPattern.toString());
-        this.sendMessage("TestConcumer", "getMessage", Integer.toString(10101), testPattern);
+        this.sendMessage("testConsumerService", "getMessage", Integer.toString(10101), testPattern);
     }
 
     @Override

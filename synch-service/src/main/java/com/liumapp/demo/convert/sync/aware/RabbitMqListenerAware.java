@@ -43,7 +43,7 @@ public class RabbitMqListenerAware implements ChannelAwareMessageListener, Appli
 
     @Override
     public void onMessage(Message message, Channel channel) throws Exception {
-        logger.info("----- received" + message.getMessageProperties());
+        logger.info("----- received " + message.getMessageProperties());
         try {
             Object msg = messageConverter.fromMessage(message);
             if (!appId.equals(message.getMessageProperties().getAppId())) {
