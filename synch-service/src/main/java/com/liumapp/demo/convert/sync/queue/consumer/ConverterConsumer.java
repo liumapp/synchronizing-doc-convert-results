@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.liumapp.convert.doc.Doc2PDF;
 import com.liumapp.demo.convert.sync.queue.pattern.ConvertDocPattern;
+import com.liumapp.demo.convert.sync.queue.pattern.QueueJobErrorInfoPattern;
+import com.liumapp.demo.convert.sync.queue.publisher.service.QueueJobErrorInfoPublisher;
 import com.liumapp.demo.convert.sync.socket.ConvertingResultSocketServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,12 @@ public class ConverterConsumer {
     @Autowired
     private Doc2PDF doc2PDF;
 
+    @Autowired
+    private QueueJobErrorInfoPublisher queueJobErrorInfoPublisher;
+
+    @Autowired
+    private QueueJobErrorInfoPattern queueJobErrorInfoPattern;
+
     private static Logger logger = LoggerFactory.getLogger(ConverterConsumer.class);
 
     public void process (String jsonPattern) throws Exception {
@@ -40,6 +48,7 @@ public class ConverterConsumer {
         } catch (Exception e) {
             // send msg to convert doc result that convert failed.
             // todo
+
         }
     }
 
