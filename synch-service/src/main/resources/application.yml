@@ -20,7 +20,7 @@ spring:
     name: synch-service
   rabbitmq:
     port: 5672
-    host: localhost
+    host: synch-rabbitmq
     username: springcloud
     password: 123456
     publisher-confirms: true
