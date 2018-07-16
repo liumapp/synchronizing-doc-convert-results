@@ -11,6 +11,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.nio.channels.Channel;
 
@@ -21,8 +22,7 @@ import java.nio.channels.Channel;
  * @homepage http://www.liumapp.com
  * @date 7/6/18
  */
-@Component
-@RabbitListener(queues = "doc-convert-queue")
+@Service
 public class ConverterConsumer {
 
     @Autowired
@@ -30,7 +30,6 @@ public class ConverterConsumer {
 
     private static Logger logger = LoggerFactory.getLogger(ConverterConsumer.class);
 
-    @RabbitHandler
     public void process (String jsonPattern, Channel channel) throws Exception {
         logger.info("convert job begin , doc path is : " + jsonPattern);
         ConvertDocPattern docPattern = JSON.parseObject(jsonPattern, ConvertDocPattern.class);
