@@ -16,12 +16,28 @@ public class QueueJobErrorInfoPattern {
 
     private String ErrorDesc;
 
+    private String info;
+
     public QueueJobErrorInfoPattern() {
     }
 
     public QueueJobErrorInfoPattern(String serviceName, String errorDesc) {
         this.serviceName = serviceName;
         ErrorDesc = errorDesc;
+    }
+
+    public QueueJobErrorInfoPattern(String serviceName, String errorDesc, String info) {
+        this.serviceName = serviceName;
+        ErrorDesc = errorDesc;
+        this.info = info;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     public String getServiceName() {

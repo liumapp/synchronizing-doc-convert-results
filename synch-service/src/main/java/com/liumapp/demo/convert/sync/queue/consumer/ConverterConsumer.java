@@ -47,8 +47,10 @@ public class ConverterConsumer {
             ConvertingResultSocketServer.sendMessage(responseJson(docPattern), docPattern.getConvertId());
         } catch (Exception e) {
             // send msg to convert doc result that convert failed.
-            // todo
-
+            queueJobErrorInfoPattern.setServiceName(this.getClass().getName());
+            queueJobErrorInfoPattern.setErrorDesc("handle doc convert failed!");
+            queueJobErrorInfoPattern.setInfo(jsonPattern);
+            queueJobErrorInfoPublisher.send(JSON.toJSONString(queueJobErrorInfoPattern));
         }
     }
 
