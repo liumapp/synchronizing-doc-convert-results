@@ -46,20 +46,18 @@ public class RabbitMqListenerAware implements ChannelAwareMessageListener, Appli
     @Override
     public void onMessage(Message message, Channel channel) throws Exception {
         logger.info("----- received " + message.getMessageProperties());
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
         try {
             Object msg = messageConverter.fromMessage(message);
             if (!appId.equals(message.getMessageProperties().getAppId())) {
-                channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, false);
                 throw new SecurityException("unknow app Id : " + message.getMessageProperties().getAppId());
             }
             Object service = applicationContext.getBean(message.getMessageProperties().getHeaders().get("ServiceName").toString());
             String serviceMethodName = message.getMessageProperties().getHeaders().get("ServiceMethodName").toString();
             Method method = service.getClass().getMethod(serviceMethodName, msg.getClass());
             method.invoke(service, msg);
-            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
-        } catch (Exception e) {
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
             logger.error("-------- err " + e.getMessage());
-            channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, false);
         }
     }
 

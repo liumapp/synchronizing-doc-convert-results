@@ -34,8 +34,13 @@ public class ConverterConsumer {
         logger.info("convert job begin , doc path is : " + jsonPattern);
         ConvertDocPattern docPattern = JSON.parseObject(jsonPattern, ConvertDocPattern.class);
         Thread.sleep(1500);
-        doc2PDF.doc2pdf(docPattern.getPdfPath() + "/" + docPattern.getSaveName(), docPattern.getDocPath() + "/" + docPattern.getOriginalName());
-        ConvertingResultSocketServer.sendMessage(responseJson(docPattern), docPattern.getConvertId());
+        try {
+            doc2PDF.doc2pdf(docPattern.getPdfPath() + "/" + docPattern.getSaveName(), docPattern.getDocPath() + "/" + docPattern.getOriginalName());
+            ConvertingResultSocketServer.sendMessage(responseJson(docPattern), docPattern.getConvertId());
+        } catch (Exception e) {
+            // send msg to convert doc result that convert failed.
+            // todo
+        }
     }
 
     private String responseJson (ConvertDocPattern docPattern) {
