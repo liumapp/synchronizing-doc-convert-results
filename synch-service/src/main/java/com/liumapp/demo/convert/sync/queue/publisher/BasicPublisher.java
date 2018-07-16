@@ -36,7 +36,6 @@ public abstract class BasicPublisher implements ConfirmCallback, RabbitTemplate.
 
     public void sendMessage (final String serviceName, final String serviceMethodName, final String correlationId, Object request) {
         logger.info("----- send msg : [this.{}, serviceMethodName:{} serviceName:{} correlationId: {}]", this.getClass(), serviceMethodName, serviceName, correlationId);
-        rabbitTemplate.setConfirmCallback(this);
         rabbitTemplate.setCorrelationKey(correlationId);
         rabbitTemplate.convertAndSend(routingKey, request, new MessagePostProcessor() {
             @Override
@@ -62,6 +61,11 @@ public abstract class BasicPublisher implements ConfirmCallback, RabbitTemplate.
         logger.error("the failed description is : " + s);
         logger.error("the exchange is : " + s1);
         logger.error("the routing key is : " + s2);
-
     }
+
+    /**
+     * 通知回调方法必须在子类中实现
+     * 不然会触发InvocationTargetException
+     */
+    public abstract void setCallBack ();
 }

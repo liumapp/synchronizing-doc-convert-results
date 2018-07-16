@@ -58,6 +58,7 @@ public class RabbitMqListenerAware implements ChannelAwareMessageListener, Appli
             method.invoke(service, msg);
         } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
             logger.error("-------- err " + e.getMessage());
+            channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, false);
         }
     }
 

@@ -39,16 +39,16 @@ public class ConverterConsumer {
 
     private static Logger logger = LoggerFactory.getLogger(ConverterConsumer.class);
 
-    public void process (String jsonPattern) throws Exception {
+    public void process (String jsonPattern) {
         logger.info("convert job begin , doc path is : " + jsonPattern);
         ConvertDocPattern docPattern = JSON.parseObject(jsonPattern, ConvertDocPattern.class);
-        Thread.sleep(1500);
         try {
+            Thread.sleep(1500);
             doc2PDF.doc2pdf(docPattern.getPdfPath() + "/" + docPattern.getSaveName(), docPattern.getDocPath() + "/" + docPattern.getOriginalName());
             ConvertingResultSocketServer.sendStatusMessage(responseJson(docPattern), docPattern.getConvertId());
         } catch (Exception e) {
             // send msg to convert doc result that convert failed.
-            queueJobErrorInfoPattern.setServiceName(this.getClass().getName());
+            queueJobErrorInfoPattern.setServiceName(ConverterConsumer.class.toString());
             queueJobErrorInfoPattern.setErrorDesc("handle doc convert failed!");
             queueJobErrorInfoPattern.setInfo(jsonPattern);
             queueJobErrorInfoPublisher.send(JSON.toJSONString(queueJobErrorInfoPattern));

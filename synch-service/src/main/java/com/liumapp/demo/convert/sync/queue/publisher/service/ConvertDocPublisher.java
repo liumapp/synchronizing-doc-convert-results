@@ -25,4 +25,10 @@ public class ConvertDocPublisher extends BasicPublisher {
             logger.error("send msg failed and the reason is : " + cause);
         }
     }
+
+    @Override
+    public void setCallBack() {
+        rabbitTemplate.setReturnCallback(this);
+        rabbitTemplate.setConfirmCallback(this);
+    }
 }

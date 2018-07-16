@@ -20,7 +20,7 @@ public class QueueJobErrorInfoConsumer {
 
     public void handleError(String jsonObject) {
         QueueJobErrorInfoPattern queueJobErrorInfoPattern = JSON.parseObject(jsonObject, QueueJobErrorInfoPattern.class);
-        if (queueJobErrorInfoPattern.getServiceName().equals(ConverterConsumer.class)) {
+        if (queueJobErrorInfoPattern.getServiceName().equals(ConverterConsumer.class.toString())) {
             this.handleConvertError(queueJobErrorInfoPattern.getInfo());
         }
     }

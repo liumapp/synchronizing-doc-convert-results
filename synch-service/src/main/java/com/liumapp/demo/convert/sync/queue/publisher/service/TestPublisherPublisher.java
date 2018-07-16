@@ -39,4 +39,10 @@ public class TestPublisherPublisher extends BasicPublisher {
         }
     }
 
+    @Override
+    public void setCallBack() {
+        rabbitTemplate.setReturnCallback(this);
+        rabbitTemplate.setConfirmCallback(this);
+    }
+
 }
