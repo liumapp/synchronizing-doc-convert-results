@@ -21,7 +21,7 @@ import java.util.UUID;
  * @homepage http://www.liumapp.com
  * @date 7/13/18
  */
-public abstract class BasicPublisher implements ConfirmCallback {
+public abstract class BasicPublisher implements ConfirmCallback, RabbitTemplate.ReturnCallback {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -41,7 +41,7 @@ public abstract class BasicPublisher implements ConfirmCallback {
         rabbitTemplate.convertAndSend(routingKey, request, new MessagePostProcessor() {
             @Override
             public Message postProcessMessage(Message message) throws AmqpException {
-                message.getMessageProperties().setAppId(appId);
+                message.getMessageProperties().setAppId(appId + "aaa");
                 message.getMessageProperties().setTimestamp(new Date());
                 message.getMessageProperties().setMessageId(UUID.randomUUID().toString());
                 message.getMessageProperties().setCorrelationIdString(correlationId.toString());
@@ -54,4 +54,14 @@ public abstract class BasicPublisher implements ConfirmCallback {
 
     @Override
     public abstract void confirm(CorrelationData correlationData, boolean ack, String cause);
+
+    @Override
+    public void returnedMessage(Message message, int i, String s, String s1, String s2) {
+        logger.error("msg send failed , the msg content is : " + message);
+        logger.error("the message code is : " + i);
+        logger.error("the failed description is : " + s);
+        logger.error("the exchange is : " + s1);
+        logger.error("the routing key is : " + s2);
+
+    }
 }
