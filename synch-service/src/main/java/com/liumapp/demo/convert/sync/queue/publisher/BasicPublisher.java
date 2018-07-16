@@ -41,7 +41,7 @@ public abstract class BasicPublisher implements ConfirmCallback, RabbitTemplate.
         rabbitTemplate.convertAndSend(routingKey, request, new MessagePostProcessor() {
             @Override
             public Message postProcessMessage(Message message) throws AmqpException {
-                message.getMessageProperties().setAppId(appId + "aaa");
+                message.getMessageProperties().setAppId(appId);
                 message.getMessageProperties().setTimestamp(new Date());
                 message.getMessageProperties().setMessageId(UUID.randomUUID().toString());
                 message.getMessageProperties().setCorrelationIdString(correlationId.toString());

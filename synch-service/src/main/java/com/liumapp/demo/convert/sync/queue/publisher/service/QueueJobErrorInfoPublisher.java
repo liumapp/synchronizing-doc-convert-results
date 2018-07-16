@@ -19,13 +19,13 @@ public class QueueJobErrorInfoPublisher extends BasicPublisher {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public void send (String msg) {
-        logger.info("convert doc service ready to send msg : " + msg);
-        this.sendMessage("converterConsumer", "process", Integer.toString(10101), msg);
+        logger.info("an error has been detected : " + msg);
+        this.sendMessage("queueJobErrorInfoConsumer", "handleError", Integer.toString(10103), msg);
     }
 
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-        logger.info("convert doc service get confirmed info : " + correlationData);
+        logger.info("queue job error info service get confirmed info : " + correlationData);
         if (ack) {
             logger.info("send msg success");
         } else {

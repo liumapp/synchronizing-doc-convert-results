@@ -13,7 +13,7 @@ public class ConvertDocPublisher extends BasicPublisher {
 
     public void send (String msg) {
         logger.info("convert doc service ready to send msg : " + msg);
-        this.sendMessage("converterConsumer", "process", Integer.toString(10101), msg);
+        this.sendMessage("converterConsumer", "process", Integer.toString(10102), msg);
     }
 
     @Override
