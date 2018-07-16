@@ -25,6 +25,12 @@ the moving picture is introduced as follows:
 
 ![ui-show.gif](https://github.com/liumapp/synchronizing-doc-convert-results/blob/master/pic/ui-show.gif)
 
+* If the user uploads a problematic doc document, for example, we change the suffix name of an JPG picture to '.doc' and uploaded it, then the backend can capture the exception in the process of conversion to the document and feed it back to the front end.
+
+the moving picture is introduced as follows:
+
+![ui-with-wrong-show.git](https://github.com/liumapp/synchronizing-doc-convert-results/blob/master/pic/ui-with-wrong-show.gif)
+
 ## how to use
 
 ### Docker
