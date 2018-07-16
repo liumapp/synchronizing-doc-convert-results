@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @date 7/16/18
  */
 @Service
-public class ConvertDocResultPublisher extends BasicPublisher {
+public class QueueJobErrorInfoPublisher extends BasicPublisher {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 

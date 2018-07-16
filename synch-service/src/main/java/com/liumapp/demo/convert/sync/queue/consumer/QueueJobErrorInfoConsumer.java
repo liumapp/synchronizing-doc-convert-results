@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * @date 7/16/18
  */
 @Service
-public class ConvertDocResultConsumer {
+public class QueueJobErrorInfoConsumer {
 
 
 
