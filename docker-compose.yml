@@ -4,7 +4,7 @@ services:
   synch-service:
     container_name: synch-service
     restart: always
-    image: liumapp/synchronizing-doc-convert-results:v1.0.0
+    image: liumapp/synchronizing-doc-convert-results:v1.1.0
     ports:
       - 2020:2020
     networks:

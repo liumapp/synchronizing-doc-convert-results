@@ -20,9 +20,15 @@ spring:
     name: synch-service
   rabbitmq:
     port: 5672
-    host: synch-rabbitmq
+    host: localhost
     username: springcloud
     password: 123456
+    publisher-confirms: true
+    publisher-returns: true
+    custom:
+      appid: 9A064E7A180BB4790F827F546F699BB3
+      exchange: synch-exchange
+      routingkey: synch-routing
 liumapp:
   filemanager:
     savePath: /synchronizing-doc-convert-results/data/
