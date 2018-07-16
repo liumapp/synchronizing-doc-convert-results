@@ -40,7 +40,7 @@ spring:
     username: springcloud
     password: 123456
     publisher-confirms: true
-    publisher-returns: true
+    publisher-returns: false
     custom:
       appid: 9A064E7A180BB4790F827F546F699BB3
       exchange: synch-exchange

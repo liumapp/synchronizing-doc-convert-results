@@ -1,6 +1,8 @@
 package com.liumapp.demo.convert.sync.aware;
 
+import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.ReturnListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
@@ -55,7 +57,7 @@ public class RabbitMqListenerAware implements ChannelAwareMessageListener, Appli
             String serviceMethodName = message.getMessageProperties().getHeaders().get("ServiceMethodName").toString();
             Method method = service.getClass().getMethod(serviceMethodName, msg.getClass());
             method.invoke(service, msg);
-        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+        } catch (Exception e) {
             logger.error("-------- err " + e.getMessage());
             channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, false);
         }

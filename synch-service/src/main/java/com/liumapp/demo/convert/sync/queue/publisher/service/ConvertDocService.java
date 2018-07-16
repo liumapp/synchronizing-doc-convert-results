@@ -5,6 +5,7 @@ import com.liumapp.demo.convert.sync.queue.pattern.TestPattern;
 import com.liumapp.demo.convert.sync.queue.publisher.BasicPublisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,10 @@ public class ConvertDocService extends BasicPublisher {
         } else {
             logger.error("send msg failed and the reason is : " + cause);
         }
+    }
+
+    @Override
+    public void returnedMessage(Message message, int i, String s, String s1, String s2) {
+        logger.info("convert doc failed");
     }
 }
