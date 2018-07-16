@@ -30,11 +30,15 @@ public class ConverterConsumer {
 
     private static Logger logger = LoggerFactory.getLogger(ConverterConsumer.class);
 
-    public void process (String jsonPattern, Channel channel) throws Exception {
+    public void process (String jsonPattern, Channel channel) {
         logger.info("convert job begin , doc path is : " + jsonPattern);
         ConvertDocPattern docPattern = JSON.parseObject(jsonPattern, ConvertDocPattern.class);
-        Thread.sleep(1500);
-        doc2PDF.doc2pdf(docPattern.getPdfPath() + "/" + docPattern.getSaveName(), docPattern.getDocPath() + "/" + docPattern.getOriginalName());
+        try {
+            Thread.sleep(1500);
+            doc2PDF.doc2pdf(docPattern.getPdfPath() + "/" + docPattern.getSaveName(), docPattern.getDocPath() + "/" + docPattern.getOriginalName());
+        } catch (Exception e) {
+            logger.error("convert failed, the file info is : " + jsonPattern);
+        }
         ConvertingResultSocketServer.sendMessage(responseJson(docPattern), docPattern.getConvertId());
     }
 
