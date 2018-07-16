@@ -25,6 +25,12 @@ Doc文档的批量上传并转换为PDF文件，前端同步获取转换结果�
 
 ![ui-show.gif](https://github.com/liumapp/synchronizing-doc-convert-results/blob/master/pic/ui-show.gif)
 
+* 如果前端用户上传一个有问题的doc文档，比如，我们将一个jpg图片的后缀名改为.doc，然后将它上传，那么后端在对这个文档进行转换的过程中，能够捕捉到异常，并反馈给前端
+
+介绍动图如下：
+
+
+
 ## 如何使用
 
 ### Docker
