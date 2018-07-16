@@ -97,16 +97,23 @@ export default {
       let i = this.i;
       let _vue = this;
       let data = event.data;
+      console.log(data);
       data = JSON.parse(data);
       this.tableData.forEach(item => {
         if (i == data.index) {
-          _vue.tableData[i].savename = data.savename;
-          _vue.tableData[i].status = status.CONVERTED_SUCCESS;
+          if (data.status == status.CONVERTED_SUCCESS) {
+            _vue.tableData[i].savename = data.savename;
+            _vue.tableData[i].status = status.CONVERTED_SUCCESS;
+            this.$Message.success("convert success , the file savename is : " + data.savename);
+          } else {
+            _vue.tableData[i].savename = data.savename;
+            _vue.tableData[i].status = status.CONVERTED_FAILD;
+            this.$Message.error("convert failed");
+          }
           i++;
           _vue.i++;
         }
       });
-      this.$Message.success("convert success , the file savename is : " + data.savename);
     },
     downloadPdf () {
       window.open(util.ajaxUrl + "download/?filename=" + this.filename);

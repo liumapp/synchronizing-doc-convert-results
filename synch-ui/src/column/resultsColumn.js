@@ -27,8 +27,18 @@ export const tableResultsColumn = [
     align: 'center',
     render: (h, params) => {
       const row = params.row;
-      const text = row.status === status.CONVERTED_SUCCESS ? '成功' : '转换中';
-      const color = row.status === status.CONVERTED_SUCCESS ? 'green' : 'red';
+      let text = '';
+      let color = '';
+      if (row.status === status.CONVERTED_SUCCESS) {
+        text = '成功';
+        color = 'green';
+      } else if (row.status === status.CONVERTED_FAILD) {
+        text = '转换失败';
+        color = 'red';
+      } else {
+        text = '转换中';
+        color = 'yellow';
+      }
       return h('Tag', {
         props: {
           type: 'dot',
