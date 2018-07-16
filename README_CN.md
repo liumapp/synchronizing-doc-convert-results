@@ -29,7 +29,7 @@ Doc文档的批量上传并转换为PDF文件，前端同步获取转换结果�
 
 介绍动图如下：
 
-
+![ui-with-wrong-show.git](https://github.com/liumapp/synchronizing-doc-convert-results/blob/master/pic/ui-with-wrong-show.gif)
 
 ## 如何使用
 
