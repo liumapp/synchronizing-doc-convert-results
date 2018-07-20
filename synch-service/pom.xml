@@ -103,6 +103,7 @@
   </repositories>
 
   <build>
+    <!--handle woff fonts error-->
     <resources>
       <resource>
         <directory>${project.basedir}/src/main/resources</directory>

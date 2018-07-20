@@ -30,9 +30,12 @@ public class RabbitMqConfig {
     @Value("${spring.rabbitmq.custom.routingkey}")
     private String routingKey;
 
+    @Value("${spring.rabbitmq.custom.queue}")
+    private String queueName;
+
     @Bean
     public Queue synchQueue () {
-        return new Queue("synch-queue", true);
+        return new Queue(queueName, true);
     }
 
     @Bean
