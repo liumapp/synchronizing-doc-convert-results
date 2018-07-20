@@ -1,4 +1,4 @@
-# synchronizing-doc-convert-resultsm 
+# synchronizing-doc-convert-results
 
 Multy upload and conversion of doc documents to PDF files. Frontend synchronous acquisition of conversion results and download.
 
