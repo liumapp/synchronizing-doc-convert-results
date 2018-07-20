@@ -15,6 +15,7 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
@@ -30,7 +31,7 @@ public class ConvertingResultSocketServer {
 
     private static Logger logger = LoggerFactory.getLogger(ConvertingResultSocketServer.class);
 
-    private static CopyOnWriteArraySet<ConvertingResultSocketServer> resultWebSet = new CopyOnWriteArraySet<ConvertingResultSocketServer>();
+    private static ConcurrentHashMap<Integer, ConvertingResultSocketServer> convertHashMap = new ConcurrentHashMap<Integer, ConvertingResultSocketServer>();
 
     private static Map<String, Session> sessionPool = new HashMap<String, Session>();
 
@@ -42,7 +43,7 @@ public class ConvertingResultSocketServer {
     public void onOpen (Session session, @PathParam(value = "convertId") Integer convertId) {
         this.session = session;
         this.convertId = convertId;
-        resultWebSet.add(this);
+        convertHashMap.put(convertId, this);
         sessionPool.put(convertId.toString(), session);
         logger.info("new  convert job in , the convertId is :" + convertId.toString());
     }
@@ -51,7 +52,7 @@ public class ConvertingResultSocketServer {
     public void onClose () {
         Integer convertId = this.convertId;
         sessionPool.remove(convertId.toString());
-        resultWebSet.remove(this);
+        convertHashMap.remove(convertId);
         logger.info("convert job out , the convertId is :" + convertId.toString());
     }
 
@@ -61,7 +62,8 @@ public class ConvertingResultSocketServer {
     }
 
     public static void sendAll (String msg) {
-        for (ConvertingResultSocketServer client: resultWebSet) {
+        for (Integer convertId: convertHashMap.keySet()) {
+            ConvertingResultSocketServer client = convertHashMap.get(convertId);
             try {
                 client.session.getAsyncRemote().sendText(msg);
             } catch (Exception e) {
