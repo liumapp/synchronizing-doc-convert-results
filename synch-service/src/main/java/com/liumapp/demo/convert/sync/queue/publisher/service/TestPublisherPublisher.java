@@ -1,7 +1,7 @@
 package com.liumapp.demo.convert.sync.queue.publisher.service;
 
 import com.liumapp.demo.convert.sync.queue.pattern.TestPattern;
-import com.liumapp.demo.convert.sync.queue.publisher.BasicPublisher;
+import com.liumapp.rabbitmq.publisher.BasicPublisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.support.CorrelationData;
@@ -23,6 +23,7 @@ public class TestPublisherPublisher extends BasicPublisher {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @Override
     public void send (String msg) {
         testPattern.setSendContent(msg);
         logger.info("sender: " + testPattern.toString());

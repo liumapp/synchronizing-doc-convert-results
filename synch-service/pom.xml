@@ -37,6 +37,11 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-websocket</artifactId>
     </dependency>
     <dependency>
@@ -77,8 +82,9 @@
 
     <!--rabbit mq require-->
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-amqp</artifactId>
+        <groupId>com.liumapp.rabbitmq</groupId>
+        <artifactId>rabbitmq-operator</artifactId>
+        <version>v2.0.1</version>
     </dependency>
 
     <!--ui require-->
