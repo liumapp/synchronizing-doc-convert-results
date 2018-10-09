@@ -49,6 +49,8 @@
       <artifactId>fastjson</artifactId>
       <version>1.2.15</version>
     </dependency>
+
+    <!--convert base64 doc to pdf require  -->
     <dependency>
         <groupId>com.liumapp.qtools.starter.springboot</groupId>
         <artifactId>qtools-spring-boot-starter</artifactId>
