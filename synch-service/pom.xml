@@ -10,7 +10,7 @@
 
   <groupId>com.liumapp.demo.convert.sync</groupId>
   <artifactId>synchronizing-doc-convert-results</artifactId>
-  <version>v2.0.0</version>
+  <version>v2.0.1</version>
   <packaging>jar</packaging>
 
   <properties>
@@ -49,22 +49,17 @@
       <artifactId>fastjson</artifactId>
       <version>1.2.15</version>
     </dependency>
+    <dependency>
+        <groupId>com.liumapp.qtools.starter.springboot</groupId>
+        <artifactId>qtools-spring-boot-starter</artifactId>
+        <version>v1.2.2</version>
+    </dependency>
 
     <!--http util-->
     <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpclient</artifactId>
-      <version>4.2.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpcore</artifactId>
-      <version>4.2.1</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-lang</groupId>
-      <artifactId>commons-lang</artifactId>
-      <version>2.6</version>
+      <groupId>com.liumapp.qtools.http</groupId>
+      <artifactId>qtools-http</artifactId>
+      <version>v1.2.1</version>
     </dependency>
 
     <!--convert doc-->

@@ -1,6 +1,6 @@
 package com.liumapp.demo.convert.sync.controller;
 
-import com.liumapp.demo.convert.sync.util.FileManager;
+import com.liumapp.qtools.starter.springboot.file.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.ResponseEntity;

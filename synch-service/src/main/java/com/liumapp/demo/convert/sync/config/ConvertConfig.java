@@ -1,6 +1,5 @@
 package com.liumapp.demo.convert.sync.config;
 
-import com.alibaba.fastjson.JSONObject;
 import com.liumapp.convert.doc.Doc2PDF;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

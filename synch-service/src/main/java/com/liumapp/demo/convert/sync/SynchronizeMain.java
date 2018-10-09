@@ -1,5 +1,6 @@
 package com.liumapp.demo.convert.sync;
 
+import com.liumapp.qtools.starter.springboot.QtoolsSpringBootStarter;
 import com.liumapp.rabbitmq.RabbitMQOperatorMain;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +14,7 @@ import org.springframework.context.annotation.Import;
  * @date 7/2/18
  */
 @SpringBootApplication
-@Import(RabbitMQOperatorMain.class)
+@Import({RabbitMQOperatorMain.class, QtoolsSpringBootStarter.class})
 public class SynchronizeMain {
 
     public static void main (String[] args) {
