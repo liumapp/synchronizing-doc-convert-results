@@ -10,7 +10,7 @@
 
   <groupId>com.liumapp.demo.convert.sync</groupId>
   <artifactId>synchronizing-doc-convert-results</artifactId>
-  <version>v2.0.1</version>
+  <version>v2.0.2</version>
   <packaging>jar</packaging>
 
   <properties>
