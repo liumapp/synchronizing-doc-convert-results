@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: dev
+    active: docker
   application:
     name: synch-service
   thymeleaf:

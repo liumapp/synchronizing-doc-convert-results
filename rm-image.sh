@@ -12,6 +12,6 @@ echo '$                                                           $'
 echo '============================================================='
 echo '.'
 
-docker rmi liumapp/synchronizing-doc-convert-results:v1.1.0
+docker rmi liumapp/synchronizing-doc-convert-results:v2.0.2
 
 
