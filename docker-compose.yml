@@ -11,6 +11,7 @@ services:
       - synchronizing-doc-convert-results
     volumes:
       - ./data/:/synchronizing-doc-convert-results/data/
+      - ./fonts:/usr/share/fonts
 
   synch-rabbitmq:
     image: rabbitmq:3-management
