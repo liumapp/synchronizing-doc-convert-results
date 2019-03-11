@@ -30,6 +30,13 @@
   <name>synchronizing-doc-convert-results</name>
   <url>http://maven.apache.org</url>
 
+  <repositories>
+    <repository>
+      <id>liumapp</id>
+      <url>http://www.liumapp.com:8081/repository/liumapp/</url>
+    </repository>
+  </repositories>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
