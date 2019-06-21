@@ -1,18 +1,6 @@
 version: '2'
 
 services:
-  synch-service:
-    container_name: synch-service
-    restart: always
-    image: liumapp/synchronizing-doc-convert-results:v2.0.2
-    ports:
-      - 2020:2020
-    networks:
-      - synchronizing-doc-convert-results
-    volumes:
-      - ./data/:/synchronizing-doc-convert-results/data/
-      - ./fonts:/usr/share/fonts
-
   synch-rabbitmq:
     image: rabbitmq:3-management
     restart: always
@@ -27,6 +15,3 @@ services:
     networks:
       - synchronizing-doc-convert-results
 
-networks:
-  synchronizing-doc-convert-results:
-    driver: bridge
